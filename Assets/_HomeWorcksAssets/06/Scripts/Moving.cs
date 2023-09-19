@@ -8,8 +8,6 @@ public class Moving : MonoBehaviour
     [SerializeField] private float _speedRotate;
     [SerializeField] private float _speedScale;
 
-    [Space]
-
     [SerializeField] private bool _isMove;
     [SerializeField] private bool _isRotate;
     [SerializeField] private bool _isScale;
