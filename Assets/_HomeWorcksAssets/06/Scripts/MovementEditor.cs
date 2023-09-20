@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Moving))]
-public class MovingEditor : Editor
+[CustomEditor(typeof(Movement))]
+public class MovementEditor : Editor
 {
     private SerializedProperty _speedMove;
     private SerializedProperty _speedRotate;
