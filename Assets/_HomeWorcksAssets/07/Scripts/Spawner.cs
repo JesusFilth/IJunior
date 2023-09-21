@@ -35,5 +35,4 @@ public class Spawner : MonoBehaviour
             point.CreateEnemy();
         }
     }
-
 }
