@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(_time);
 
         if (_isActive)
-            StartCoroutine(CreateEnemy(_time));
+            StartCoroutine(CreateEnemy());
     }
 
     private void OnEnable()
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private IEnumerator CreateEnemy(float waitTime)
+    private IEnumerator CreateEnemy()
     {
         while (_isActive)
         {
