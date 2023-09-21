@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
-    [SerializeField] private float _speedEnemy;
-
     [SerializeField] private float _time;
     [SerializeField] private bool _isActive = true;
 
@@ -35,9 +32,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
             SpawnPoint point = _points[Random.Range(0, _points.Length)].GetComponent<SpawnPoint>();
-
-            Enemy tempEnemy = Instantiate(_enemy, point.transform.position, Quaternion.identity);
-            tempEnemy.Init(point.Direction, _speedEnemy);
+            point.CreateEnemy();
         }
     }
 
