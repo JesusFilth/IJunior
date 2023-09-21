@@ -8,10 +8,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool _isActive = true;
 
     private SpawnPoint[] _points;
+    private WaitForSeconds _waitForSeconds;
 
     private void Start()
     {
-        if(_isActive)
+        _waitForSeconds = new WaitForSeconds(_time);
+
+        if (_isActive)
             StartCoroutine(CreateEnemy(_time));
     }
 
@@ -29,9 +32,9 @@ public class Spawner : MonoBehaviour
     {
         while (_isActive)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return _waitForSeconds;
 
-            SpawnPoint point = _points[Random.Range(0, _points.Length)].GetComponent<SpawnPoint>();
+            SpawnPoint point = _points[Random.Range(0, _points.Length)];
             point.CreateEnemy();
         }
     }
