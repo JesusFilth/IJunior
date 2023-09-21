@@ -5,21 +5,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float _speedEnemy;
-    private Vector3 _moveDirection = Vector3.zero;
+    private EnemyTarget _target;
 
     private void Update()
     {
-        if (_moveDirection == Vector3.zero)
+        if (_target == null)
             return;
 
-        transform.Translate(transform.forward * _speedEnemy * Time.deltaTime, Space.World);
+        transform.LookAt(_target.transform);
+
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speedEnemy * Time.deltaTime);
     }
 
-    public void Init(Vector3 direction, float speedEnemy)
+    public void Init(EnemyTarget target, float speedEnemy)
     {
         _speedEnemy = speedEnemy;
-        _moveDirection = (direction - transform.position).normalized;
-
-        transform.rotation = Quaternion.LookRotation(_moveDirection);
+        _target = target;
     }
 }
