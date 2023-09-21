@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool _isActive = true;
 
     private SpawnPoint[] _points;
-
     private WaitForSeconds _waitForSeconds;
 
     private void Start()
