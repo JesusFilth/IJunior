@@ -19,9 +19,11 @@ public class EnemyTarget : MonoBehaviour
 
         _angle += _speed * Time.deltaTime;
 
-        if (_angle >= 2f * Mathf.PI)
+        float round = 2f;
+
+        if (_angle >= round * Mathf.PI)
         {
-            _angle -= 2f * Mathf.PI;
+            _angle -= round * Mathf.PI;
         }
     }
 }
