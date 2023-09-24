@@ -60,7 +60,7 @@ public class PlayerMovement2D : MonoBehaviour
         }
     }
 
-    public static class AnimatorData
+    private static class AnimatorData
     {
         public static class Params
         {
