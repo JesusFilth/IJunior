@@ -12,7 +12,7 @@ public class Alarm : MonoBehaviour
 
     private float _minVolume = 0;
     private float _maxVolume = 1;
-    private IEnumerator _currentCoroutine;
+    private IEnumerator _currentSignalCoroutine;
 
     private void OnEnable()
     {
@@ -56,10 +56,10 @@ public class Alarm : MonoBehaviour
 
     private void StartSignalCoroutine(IEnumerator signalCourotine)
     {
-        if (_currentCoroutine != null)
-            StopCoroutine(_currentCoroutine);
+        if (_currentSignalCoroutine != null)
+            StopCoroutine(_currentSignalCoroutine);
 
-        _currentCoroutine = signalCourotine;
-        StartCoroutine(_currentCoroutine);
+        _currentSignalCoroutine = signalCourotine;
+        StartCoroutine(_currentSignalCoroutine);
     }
 }
