@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Home : MonoBehaviour
 {
-    [SerializeField] private Alarm _alarm;
+    [SerializeField] private UnityEvent _enter;
+    [SerializeField] private UnityEvent _exit;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_alarm != null)
-            if (other.GetComponent<Thief>() != null)
-                _alarm.On();
+        if (other.GetComponent<Thief>() != null)
+            _enter?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (_alarm != null)
-            if (other.GetComponent<Thief>() != null)
-                _alarm.Off();
+        if (other.GetComponent<Thief>() != null)
+            _exit?.Invoke();
     }
 }

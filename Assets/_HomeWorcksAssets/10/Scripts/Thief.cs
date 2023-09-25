@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Thief : MonoBehaviour
 {
+    private const string HorizontalInput = "Horizontal";
+    private const string VerticalInput = "Vertical";
+
     [SerializeField] private float _speed;
 
     private Rigidbody _rigidbody;
@@ -22,8 +25,8 @@ public class Thief : MonoBehaviour
 
     private void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis(HorizontalInput);
+        float verticalInput = Input.GetAxis(VerticalInput);
 
         Vector3 direction = new Vector3(horizontalInput, 0, verticalInput).normalized;
 

@@ -19,27 +19,27 @@ public class Alarm : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private IEnumerator IncreasingSignal()
+    private IEnumerator ChangeSignalVolume(float conditionVolume, float toDistanceVolume, float deltaVolume)
     {
-        if (_audioSource.isPlaying == false)
-            _audioSource.Play();
-
-        while (_audioSource.volume != _maxVolume)
+        while (_audioSource.volume != conditionVolume)
         {
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.maxDistance, _volumeMaxDelta * Time.deltaTime);
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, toDistanceVolume, deltaVolume * Time.deltaTime);
 
             yield return null;
         }
     }
 
+    private IEnumerator IncreasingSignal()
+    {
+        if (_audioSource.isPlaying == false)
+            _audioSource.Play();
+
+        yield return ChangeSignalVolume(_maxVolume, _audioSource.maxDistance, _volumeMaxDelta);
+    }
+
     private IEnumerator DecreasingSignal()
     {
-        while (_audioSource.volume != _minVolume)
-        {
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.minDistance, (_volumeMaxDelta * -1) * Time.deltaTime);
-
-            yield return null;
-        }
+        yield return ChangeSignalVolume(_minVolume, _audioSource.minDistance, (_volumeMaxDelta * -1));
 
         _audioSource.Stop();
     }
