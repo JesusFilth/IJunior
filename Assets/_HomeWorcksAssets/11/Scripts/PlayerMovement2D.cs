@@ -60,9 +60,9 @@ public class PlayerMovement2D : MonoBehaviour
         }
     }
 
-    private static class AnimatorData
+    private class AnimatorData
     {
-        public static class Params
+        public class Params
         {
             public static int IsRun = Animator.StringToHash(nameof(IsRun));
             public static int Jump = Animator.StringToHash(nameof(Jump));

@@ -41,9 +41,9 @@ public class Thief : MonoBehaviour
         }
     }
 
-    public static class AnimatorData
+    public class AnimatorData
     {
-        public static class Params
+        public class Params
         {
             public static int IsWalk = Animator.StringToHash(nameof(IsWalk));
         }
