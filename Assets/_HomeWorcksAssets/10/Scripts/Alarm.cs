@@ -9,46 +9,57 @@ public class Alarm : MonoBehaviour
     [SerializeField] private float _volumeMaxDelta = 0.2f;
 
     private AudioSource _audioSource;
-    private bool _isPlay;
 
     private float _minVolume = 0;
     private float _maxVolume = 1;
+    private IEnumerator _currentCoroutine;
 
     private void OnEnable()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    private IEnumerator IncreasingSignal()
     {
-        ChangeSignalVolume();
-        ChangeSignalState();
-    }
-    private void ChangeSignalVolume()
-    {
-        if (_isPlay && _audioSource.volume != _maxVolume)
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.maxDistance, _volumeMaxDelta * Time.deltaTime);
-        else if (_isPlay == false && _audioSource.volume != _minVolume)
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.minDistance, (_volumeMaxDelta * -1) * Time.deltaTime);
-    }
-
-    private void ChangeSignalState()
-    {
-        if (_audioSource.volume > _minVolume && _audioSource.isPlaying == false)
+        if (_audioSource.isPlaying == false)
             _audioSource.Play();
-        else if (_audioSource.volume == _minVolume && _audioSource.isPlaying)
-            _audioSource.Stop();
+
+        while (_audioSource.volume != _maxVolume)
+        {
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.maxDistance, _volumeMaxDelta * Time.deltaTime);
+
+            yield return null;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator DecreasingSignal()
     {
-        if (other.GetComponent<Thief>() != null)
-            _isPlay = true;
+        while (_audioSource.volume != _minVolume)
+        {
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _audioSource.minDistance, (_volumeMaxDelta * -1) * Time.deltaTime);
+
+            yield return null;
+        }
+
+        _audioSource.Stop();
     }
 
-    private void OnTriggerExit(Collider other)
+    public void On()
     {
-        if (other.GetComponent<Thief>() != null)
-            _isPlay = false;
+        StartSignalCoroutine(IncreasingSignal());
+    }
+
+    public void Off()
+    {
+        StartSignalCoroutine(DecreasingSignal());
+    }
+
+    private void StartSignalCoroutine(IEnumerator signalCourotine)
+    {
+        if (_currentCoroutine != null)
+            StopCoroutine(_currentCoroutine);
+
+        _currentCoroutine = signalCourotine;
+        StartCoroutine(_currentCoroutine);
     }
 }
