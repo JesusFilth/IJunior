@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class DOFigure : MonoBehaviour
+public class DOTransformer : MonoBehaviour
 {
     [SerializeField] private bool _isMove;
     [SerializeField] private bool _isRotate;

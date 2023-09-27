@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Figure : MonoBehaviour
+public class Transformer : MonoBehaviour
 {
     [SerializeField] private float _speedMove;
     [SerializeField] private float _speedRotate;

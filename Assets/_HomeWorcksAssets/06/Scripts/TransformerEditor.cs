@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Figure))]
-public class FigureEditor : Editor
+[CustomEditor(typeof(Transformer))]
+public class TransformerEditor : Editor
 {
     private SerializedProperty _speedMove;
     private SerializedProperty _speedRotate;

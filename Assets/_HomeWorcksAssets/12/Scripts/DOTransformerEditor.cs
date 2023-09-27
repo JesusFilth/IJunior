@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(DOFigure))]
-public class DOFigureEditor : Editor
+[CustomEditor(typeof(DOTransformer))]
+public class DOTransformerEditor : Editor
 {
     private SerializedProperty _isMove;
     private SerializedProperty _isRotate;
