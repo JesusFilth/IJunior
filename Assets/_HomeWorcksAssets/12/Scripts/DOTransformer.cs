@@ -21,7 +21,7 @@ public class DOTransformer : MonoBehaviour
     [SerializeField] private float _timeScale;
     [SerializeField] private float _timeColor;
 
-    void Start()
+    private void Start()
     {
         if (_isMove)
             transform.DOMove(_targetMove, _timeMove).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
