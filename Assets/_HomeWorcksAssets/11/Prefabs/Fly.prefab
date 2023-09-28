@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 453497389146180931}
   - component: {fileID: 453497389146180930}
   - component: {fileID: 453497389146180933}
+  - component: {fileID: 1996121413}
   m_Layer: 0
   m_Name: Fly
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453497389146180935}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.98, y: 1.79, z: 0.41487917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -118,9 +119,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffe95ac6e481bf46a10a69c39477a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _timeSecondDistance: 3
+  _speed: 2.3
+  _timeSecondDistance: 4
   _rightDirection: 1
+--- !u!114 &1996121413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453497389146180935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6383c64f7c1a243baf745ca0bed6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _coin: {fileID: 2343135061315091930, guid: 20d246f2e0b7de149b4561802744cc66, type: 3}
-  _timeSpawnCoin: 2
+  _timeSpawnCoin: 3
   _isSpawn: 1

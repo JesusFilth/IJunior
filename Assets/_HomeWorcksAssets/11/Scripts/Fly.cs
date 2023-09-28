@@ -8,24 +8,15 @@ public class Fly : MonoBehaviour
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _timeSecondDistance = 3;
     [SerializeField] private bool _rightDirection = true;
-    [SerializeField] private Coin _coin;
-    [SerializeField] float _timeSpawnCoin;
-    [SerializeField] bool _isSpawn = true;
+    
 
     private float _currentTime = 0;
     private SpriteRenderer _spriteRenderer;
-    private WaitForSeconds _waitForSeconds;
-
+    
     private void OnEnable()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.flipX = !_rightDirection;
-    }
-
-    private void Start()
-    {
-        _waitForSeconds = new WaitForSeconds(_timeSpawnCoin);
-        StartCoroutine(CoinSpawning());
     }
 
     private void Update()
@@ -50,16 +41,6 @@ public class Fly : MonoBehaviour
             _rightDirection = !_rightDirection;
             _spriteRenderer.flipX = !_spriteRenderer.flipX;
             _currentTime = 0;
-        }
-    }
-
-    private IEnumerator CoinSpawning()
-    {
-        while (_isSpawn)
-        {
-            yield return _waitForSeconds;
-
-            Instantiate(_coin,transform.position, Quaternion.identity);
         }
     }
 }
