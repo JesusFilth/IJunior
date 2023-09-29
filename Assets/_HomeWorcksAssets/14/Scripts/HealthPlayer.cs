@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthGameManager : MonoBehaviour
+public class HealthPlayer : MonoBehaviour
 {
-    [SerializeField] private PlayerHealthModel _playerModel;
+    [SerializeField] private HealthPlayerModel _playerModel;
     [SerializeField] private HealthBarView _healthBarView;
 
     public void TakeDamage(float damage)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthModel : MonoBehaviour
+public class HealthPlayerModel : MonoBehaviour
 {
     [SerializeField] private float _maxHealth;
 
@@ -10,6 +10,17 @@ public class PlayerHealthModel : MonoBehaviour
 
     public float Health => _health;
     public float MaxHealth => _maxHealth;
+
+    private void Start()
+    {
+        _health = _maxHealth;
+    }
+
+    private void OnValidate()
+    {
+        if (_maxHealth < 0)
+            _maxHealth = 0;
+    }
 
     public void TakeDamage(float damage)
     {
@@ -27,14 +38,4 @@ public class PlayerHealthModel : MonoBehaviour
             _health = _maxHealth;
     }
 
-    private void Start()
-    {
-        _health = _maxHealth;
-    }
-
-    private void OnValidate()
-    {
-        if (_maxHealth < 0)
-            _maxHealth = 0;
-    }
 }

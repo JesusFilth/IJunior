@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleEffectManager : MonoBehaviour
+public class BattleEffects: MonoBehaviour
 {
     [SerializeField] Transform _target;
 
