@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DORotate : MonoBehaviour
+public class DORotator : MonoBehaviour
 {
     [SerializeField] private Vector3 _targetRotation;
     [SerializeField] private float _timeRotate;

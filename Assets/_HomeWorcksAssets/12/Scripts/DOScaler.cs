@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DOScale : MonoBehaviour
+public class DOScaler : MonoBehaviour
 {
     [SerializeField] private Vector3 _targetScale;
     [SerializeField] private float _timeScale;

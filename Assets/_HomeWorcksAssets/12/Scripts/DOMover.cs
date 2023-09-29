@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DOMove : MonoBehaviour
+public class DOMover : MonoBehaviour
 {
     [SerializeField] private Vector3 _targetMove;
     [SerializeField] private float _timeMove;
