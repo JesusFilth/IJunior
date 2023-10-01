@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerMovement2D : MonoBehaviour
 {
+    private const string InputHorizontalDirection = "Horizontal";
+
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
 
@@ -29,7 +31,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis(InputHorizontalDirection);
 
         Vector2 direction = new Vector2(horizontalInput * _speed, _rigidbody.velocity.y);
 
@@ -54,10 +56,8 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
+        if (collision.transform.TryGetComponent(out Rigidbody2D rigidbody))
             _isJump = false;
-        }
     }
 
     private class AnimatorData

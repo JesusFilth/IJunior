@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameLoader/Menu.unity
     guid: a3f2b8b24c2b2c640aa4665b5982aea8
+  - enabled: 1
+    path: Assets/Scenes/homework_14.unity
+    guid: fed6e7753c5cf84409197dcc63d2ae98
   m_configObjects: {}

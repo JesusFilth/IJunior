@@ -5,20 +5,18 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coin _coin;
-    [SerializeField] float _timeSpawnCoin;
-    [SerializeField] bool _isSpawn = true;
-
-    private WaitForSeconds _waitForSeconds;
+    [SerializeField] private float _timeSpawnCoin;
 
     private void Start()
     {
-        _waitForSeconds = new WaitForSeconds(_timeSpawnCoin);
         StartCoroutine(CoinSpawning());
     }
 
     private IEnumerator CoinSpawning()
     {
-        while (_isSpawn)
+        WaitForSeconds _waitForSeconds = new WaitForSeconds(_timeSpawnCoin);
+
+        while (enabled)
         {
             yield return _waitForSeconds;
 

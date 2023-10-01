@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PhysicsMovement : MonoBehaviour
 {
+    private const string InputHorizontalDirection = "Horizontal";
+
     [SerializeField] private float _minGroundNormalY = .65f;
     [SerializeField] private float _gravityModifier = 1f;
     [SerializeField] private float _jumpForceY = 8f;
@@ -44,7 +46,7 @@ public class PhysicsMovement : MonoBehaviour
 
     private void Update()
     {
-        InputDirectionX = new Vector2(Input.GetAxis("Horizontal"), 0);
+        InputDirectionX = new Vector2(Input.GetAxis(InputHorizontalDirection), 0);
 
         ChangeAnimation();
 
@@ -66,14 +68,14 @@ public class PhysicsMovement : MonoBehaviour
         Vector2 moveAlongGround = new Vector2(GroundNormal.y, -GroundNormal.x);
         Vector2 move = moveAlongGround * deltaPosition.x;
 
-        Movement(move, false);
+        Move(move, false);
 
         move = Vector2.up * deltaPosition.y;
 
-        Movement(move, true);
+        Move(move, true);
     }
 
-    private void Movement(Vector2 move, bool yMovement)
+    private void Move(Vector2 move, bool yMovement)
     {
         float distance = move.magnitude;
 

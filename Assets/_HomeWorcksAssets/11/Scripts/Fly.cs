@@ -8,15 +8,21 @@ public class Fly : MonoBehaviour
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _timeSecondDistance = 3;
     [SerializeField] private bool _rightDirection = true;
-    
 
-    private float _currentTime = 0;
     private SpriteRenderer _spriteRenderer;
-    
+    private IEnumerator _changingDirection;
+    private Vector3 _targetDirection;
+
     private void OnEnable()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.flipX = !_rightDirection;
+
+        if (_changingDirection == null)
+        {
+            _changingDirection = Moving();
+            StartCoroutine(_changingDirection);
+        }
     }
 
     private void Update()
@@ -26,21 +32,26 @@ public class Fly : MonoBehaviour
 
     private void Move()
     {
-        Vector3 direction = Vector3.zero;
-
         if (_rightDirection)
-            direction = transform.right;
+            _targetDirection = transform.right;
         else
-            direction = -transform.right;
+            _targetDirection = -transform.right;
 
-        transform.Translate(direction * _speed * Time.deltaTime);
-        _currentTime += Time.deltaTime;
+        transform.Translate(_targetDirection * _speed * Time.deltaTime);
+    }
 
-        if (_currentTime > _timeSecondDistance)
+    private IEnumerator Moving()
+    {
+        WaitForSeconds _waitForSeconds = new WaitForSeconds(_timeSecondDistance);
+
+        while (enabled)
         {
+            yield return _waitForSeconds;
+
             _rightDirection = !_rightDirection;
             _spriteRenderer.flipX = !_spriteRenderer.flipX;
-            _currentTime = 0;
         }
+
+        _changingDirection = null;
     }
 }
