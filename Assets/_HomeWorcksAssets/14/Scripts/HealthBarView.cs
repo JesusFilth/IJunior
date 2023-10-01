@@ -34,12 +34,12 @@ public class HealthBarView : MonoBehaviour
 
         if (_changingHealsBarView == null)
         {
-            _changingHealsBarView = ChangingHealsBarView();
+            _changingHealsBarView = ChangingTargetValue();
             StartCoroutine(_changingHealsBarView);
         }
     }
 
-    private IEnumerator ChangingHealsBarView()
+    private IEnumerator ChangingTargetValue()
     {
         while (_slider.value != _targePercentValue)
         {

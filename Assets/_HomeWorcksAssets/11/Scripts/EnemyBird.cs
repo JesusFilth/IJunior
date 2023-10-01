@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Fly : MonoBehaviour
+public class EnemyBird : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
     [SerializeField] private float _timeSecondDistance = 3;
@@ -11,7 +11,6 @@ public class Fly : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private IEnumerator _changingDirection;
-    private Vector3 _targetDirection;
 
     private void OnEnable()
     {
@@ -32,21 +31,17 @@ public class Fly : MonoBehaviour
 
     private void Move()
     {
-        if (_rightDirection)
-            _targetDirection = transform.right;
-        else
-            _targetDirection = -transform.right;
-
-        transform.Translate(_targetDirection * _speed * Time.deltaTime);
+        transform.Translate((_rightDirection ? transform.right : -transform.right)
+            * _speed * Time.deltaTime);
     }
 
     private IEnumerator Moving()
     {
-        WaitForSeconds _waitForSeconds = new WaitForSeconds(_timeSecondDistance);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeSecondDistance);
 
         while (enabled)
         {
-            yield return _waitForSeconds;
+            yield return waitForSeconds;
 
             _rightDirection = !_rightDirection;
             _spriteRenderer.flipX = !_spriteRenderer.flipX;

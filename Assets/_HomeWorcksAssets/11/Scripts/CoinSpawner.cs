@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coin _coin;
-    [SerializeField] private float _timeSpawnCoin;
+    [SerializeField] private float _delay = 3f;
 
     private void Start()
     {
@@ -14,11 +14,11 @@ public class CoinSpawner : MonoBehaviour
 
     private IEnumerator CoinSpawning()
     {
-        WaitForSeconds _waitForSeconds = new WaitForSeconds(_timeSpawnCoin);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_delay);
 
         while (enabled)
         {
-            yield return _waitForSeconds;
+            yield return waitForSeconds;
 
             Instantiate(_coin, transform.position, Quaternion.identity);
         }
