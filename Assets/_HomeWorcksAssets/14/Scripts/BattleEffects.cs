@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BattleEffects: MonoBehaviour
 {
-    [SerializeField] Transform _target;
+    [SerializeField] private Transform _target;
 
-    [SerializeField] FXEffect _damage;
-    [SerializeField] FXEffect _heal;
+    [SerializeField] private FXEffect _damage;
+    [SerializeField] private FXEffect _heal;
 
     public void Hit()
     {

@@ -6,31 +6,48 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class HealthBarView : MonoBehaviour
 {
-    const float MaxPercent = 100;
-
     [SerializeField] private float _maxDeltaChange;
+    [SerializeField] public HealthModel _healthModel;
 
     private Slider _slider;
+    private IEnumerator _changingHealsBarView;
+    private float _targePercentValue = 0;
 
     private void OnEnable()
     {
         _slider = GetComponent<Slider>();
+
+        if (_healthModel != null)
+            _healthModel.ValueChanged += UpdateVolume;
     }
 
-    public void UpdateVolume(float currentValue, float maxValue)
+    private void OnDisable()
     {
-        float healthPercent = MaxPercent / (maxValue / currentValue);
-
-        StartCoroutine(ChangingHealsBarView(healthPercent));
+        if (_healthModel != null)
+            _healthModel.ValueChanged -= UpdateVolume;
     }
 
-    private IEnumerator ChangingHealsBarView(float healthPercent)
+    private void UpdateVolume()
     {
-        while (_slider.value != healthPercent)
+        if (_healthModel != null)
+            _targePercentValue = _healthModel.GetPercentValue();
+
+        if (_changingHealsBarView == null)
         {
-            _slider.value = Mathf.MoveTowards(_slider.value, healthPercent, _maxDeltaChange);
+            _changingHealsBarView = ChangingHealsBarView();
+            StartCoroutine(_changingHealsBarView);
+        }
+    }
+
+    private IEnumerator ChangingHealsBarView()
+    {
+        while (_slider.value != _targePercentValue)
+        {
+            _slider.value = Mathf.MoveTowards(_slider.value, _targePercentValue, _maxDeltaChange);
 
             yield return null;
         }
+
+        _changingHealsBarView = null;
     }
 }
