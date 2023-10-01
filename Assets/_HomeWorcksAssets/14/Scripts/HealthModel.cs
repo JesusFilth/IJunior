@@ -19,8 +19,7 @@ public class HealthModel : MonoBehaviour
 
     private void OnValidate()
     {
-        if (_maxValue < 0)
-            _maxValue = 0;
+        _maxValue = Mathf.Clamp(_maxValue, 0f, float.MaxValue);
     }
 
     public void AddValue(float value)
