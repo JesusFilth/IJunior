@@ -8,7 +8,7 @@ public class HealthModel : MonoBehaviour
 {
     [SerializeField] private float _maxValue;
 
-    public event Action ValueChanged;
+    public event Action<float> ValueChanged;
 
     private float _value;
 
@@ -26,10 +26,10 @@ public class HealthModel : MonoBehaviour
     {
         _value = Mathf.Clamp(_value += value, 0, _maxValue);
 
-        ValueChanged?.Invoke();
+        ValueChanged?.Invoke(GetPercentValue());
     }
 
-    public float GetPercentValue()
+    private float GetPercentValue()
     {
         const float MaxPercent = 100;
 

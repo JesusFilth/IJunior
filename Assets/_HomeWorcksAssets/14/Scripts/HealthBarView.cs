@@ -27,10 +27,10 @@ public class HealthBarView : MonoBehaviour
             _healthModel.ValueChanged -= UpdateVolume;
     }
 
-    private void UpdateVolume()
+    private void UpdateVolume(float percentValue)
     {
         if (_healthModel != null)
-            _targePercentValue = _healthModel.GetPercentValue();
+            _targePercentValue = percentValue;
 
         if (_changingHealsBarView == null)
         {
