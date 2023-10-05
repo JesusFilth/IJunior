@@ -37,14 +37,14 @@ public class RoadRunnerSpawner : Pool
 
         Transform parent = transform;
 
-        if (_conteiner != null)
-            parent = _conteiner;
+        if (Ñonteiner != null)
+            parent = Ñonteiner;
 
         for (int i = 0; i < _capasity; i++)
         {
             GameObject temp = Instantiate(_prefab, parent);
             temp.SetActive(false);
-            _objects.Add(temp);
+            Objects.Add(temp);
         }
     }
 }

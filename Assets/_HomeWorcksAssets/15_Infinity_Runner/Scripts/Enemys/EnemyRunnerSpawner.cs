@@ -62,8 +62,8 @@ public class EnemyRunnerSpawner : Pool
 
         Transform parent = transform;
 
-        if (_conteiner != null)
-            parent = _conteiner;
+        if (Ñonteiner != null)
+            parent = Ñonteiner;
 
         float totalWeight = _spawnModels.Sum(spawnModel => spawnModel.Weight);
         Dictionary<GameObject, int> countCreatObject = new Dictionary<GameObject, int>();
@@ -80,7 +80,7 @@ public class EnemyRunnerSpawner : Pool
             {
                 GameObject temp = Instantiate(objCreate.Key, parent);
                 temp.SetActive(false);
-                _objects.Add(temp);
+                Objects.Add(temp);
             }
         }
     }
