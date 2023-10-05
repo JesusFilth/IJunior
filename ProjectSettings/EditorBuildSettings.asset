@@ -20,4 +20,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_14.unity
     guid: fed6e7753c5cf84409197dcc63d2ae98
+  - enabled: 1
+    path: Assets/Scenes/homework_11.unity
+    guid: 2ead7bc819b5795458a110405c480ae7
+  - enabled: 1
+    path: Assets/Scenes/homework_15_runner.unity
+    guid: 11160e74879a8c94ab09ec466cc15193
+  - enabled: 1
+    path: Assets/PolygonS/PolygonSciFiCity/Scenes/Demo_TriplanarDirt.unity
+    guid: 6149b716e09fa8a49b1c0da3907634db
+  - enabled: 1
+    path: Assets/PolygonS/PolygonSciFiCity/Scenes/Demo.unity
+    guid: f3b9e9dadf5931045b77452c62c3cdbc
+  - enabled: 1
+    path: Assets/FX/JMO Assets/Cartoon FX Remaster/CFXR_Demo.unity
+    guid: 803b0890bb7886446bb7d21b75c8b196
+  - enabled: 1
+    path: Assets/FX/JMO Assets/Cartoon FX (legacy)/Demo/CFX1_Demo.unity
+    guid: 88f810e88bff38d4997498f0e8485672
   m_configObjects: {}
