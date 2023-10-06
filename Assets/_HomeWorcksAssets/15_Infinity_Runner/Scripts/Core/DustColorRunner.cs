@@ -7,8 +7,7 @@ public class DustColorRunner : MonoBehaviour
 {
     [SerializeField] private Color _targetColor;
     [SerializeField] private int _maxPointForColorEffect;
-    [Space]
-    [SerializeField] private PlayerRunner _player;
+    [Space] [SerializeField] private PlayerRunner _player;
 
     private ParticleSystem _particle;
     private ParticleSystem.MainModule _particleMainModule;
