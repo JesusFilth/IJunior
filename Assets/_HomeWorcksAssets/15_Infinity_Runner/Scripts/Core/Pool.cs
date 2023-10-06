@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Pool : MonoBehaviour
 {
-    [SerializeField] protected Transform Ñonteiner;
+    [SerializeField] protected Transform Conteiner;
 
     protected List<GameObject> Objects = new List<GameObject>();
 

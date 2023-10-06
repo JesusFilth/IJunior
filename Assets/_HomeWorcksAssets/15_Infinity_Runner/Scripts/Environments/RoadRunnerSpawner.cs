@@ -37,8 +37,8 @@ public class RoadRunnerSpawner : Pool
 
         Transform parent = transform;
 
-        if (Ñonteiner != null)
-            parent = Ñonteiner;
+        if (Conteiner != null)
+            parent = Conteiner;
 
         for (int i = 0; i < _capasity; i++)
         {
