@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyRunnerSpawner : Pool
 {
-    [SerializeField] SpawnModel[] _spawnModels;
+    [SerializeField] private SpawnModel[] _spawnModels;
     [Space] [SerializeField] private int _capasity;
     [Space] [SerializeField] private Transform[] _points;
     [SerializeField] private float _delay = 3;
@@ -87,7 +87,7 @@ public class EnemyRunnerSpawner : Pool
 
     private IEnumerator Creating()
     {
-        WaitForSeconds _waitForSeconds = new WaitForSeconds(_delay);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_delay);
 
         while (enabled)
         {
@@ -96,7 +96,7 @@ public class EnemyRunnerSpawner : Pool
                 CreateObject(enemy, _points[Random.Range(0, _points.Length)].position);
             }
 
-            yield return _waitForSeconds;
+            yield return waitForSeconds;
         }
 
         _creating = null;
