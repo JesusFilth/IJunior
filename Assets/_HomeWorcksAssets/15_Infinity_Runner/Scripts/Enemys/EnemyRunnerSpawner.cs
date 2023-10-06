@@ -50,13 +50,13 @@ public class EnemyRunnerSpawner : Pool
     {
         if (_spawnModels == null || _spawnModels.Length == 0)
         {
-            Debug.Log("Не назначены префабы врагов");
+            Debug.Log("No enemy prefabs assigned");
             return;
         }
 
         if (_points == null || _points.Length == 0)
         {
-            Debug.Log("Не назначены точки спавна");
+            Debug.Log("No spawn points assigned");
             return;
         }
 

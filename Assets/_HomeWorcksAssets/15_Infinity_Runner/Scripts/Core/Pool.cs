@@ -40,7 +40,7 @@ public abstract class Pool : MonoBehaviour
         }
         catch
         {
-            Debug.Log("Добавте в пулл дополнительно объекты");
+            Debug.Log("Add additional objects to the pool");
             return false;
         }
         
