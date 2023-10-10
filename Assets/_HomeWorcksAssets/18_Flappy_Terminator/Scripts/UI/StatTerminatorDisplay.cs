@@ -33,11 +33,11 @@ public class StatTerminatorDisplay : MonoBehaviour
 
     private void ChangePoints(int points)
     {
-        _points.text = $"{PointText}{points.ToString()}";
+        _points.text = $"{PointText}{points}";
     }
 
     private void ChangeHealth(int health)
     {
-        _health.text = $"{HealthText}{health.ToString()}";
+        _health.text = $"{HealthText}{health}";
     }
 }
