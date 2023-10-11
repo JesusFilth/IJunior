@@ -9,20 +9,20 @@ public class PlayerTerminator : MonoBehaviour
 
     private int _point;
 
-    public UnityAction<int> ChangedHealth;
-    public UnityAction<int> ChangedPoint;
+    public UnityAction<int> HealthChanged;
+    public UnityAction<int> PointChanged;
     public UnityAction Died;
 
     private void Start()
     {
-        ChangedHealth?.Invoke(_health);
-        ChangedPoint?.Invoke(_point);
+        HealthChanged?.Invoke(_health);
+        PointChanged?.Invoke(_point);
     }
 
     public void TakeDamage(int damage)
     {
         _health = Mathf.Clamp(_health-=damage, 0, int.MaxValue);
-        ChangedHealth?.Invoke(_health);
+        HealthChanged?.Invoke(_health);
 
         if (_health == 0)
             Die();
@@ -31,7 +31,7 @@ public class PlayerTerminator : MonoBehaviour
     public void AddPoint()
     {
         _point++;
-        ChangedPoint?.Invoke(_point);
+        PointChanged?.Invoke(_point);
     }
 
     private void Die()

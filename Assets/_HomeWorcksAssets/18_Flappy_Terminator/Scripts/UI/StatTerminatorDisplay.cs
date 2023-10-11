@@ -18,8 +18,8 @@ public class StatTerminatorDisplay : MonoBehaviour
         if (_player == null)
             return;
 
-        _player.ChangedHealth += ChangeHealth;
-        _player.ChangedPoint += ChangePoints;
+        _player.HealthChanged += ChangeHealth;
+        _player.PointChanged += ChangePoints;
     }
 
     private void OnDisable()
@@ -27,8 +27,8 @@ public class StatTerminatorDisplay : MonoBehaviour
         if (_player == null)
             return;
 
-        _player.ChangedHealth -= ChangeHealth;
-        _player.ChangedPoint -= ChangePoints;
+        _player.HealthChanged -= ChangeHealth;
+        _player.PointChanged -= ChangePoints;
     }
 
     private void ChangePoints(int points)
