@@ -41,4 +41,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_18_Flappy_Terminator.unity
     guid: 4483105e5cf6aaf439011778d255e93c
+  - enabled: 1
+    path: Assets/_HomeWorcksAssets/11/Characters/Enemys/Bringer Of Death/Demo.unity
+    guid: 39d89ad2b665ef34f811f0a01f828b4e
+  - enabled: 1
+    path: Assets/_HomeWorcksAssets/11_Platformer/Characters/Enemys/Rogue/scene.unity
+    guid: 0bf53aae9bbc9af4fa49963f7aafbeb8
   m_configObjects: {}
