@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TransitionPlayerDie : Transition
 {
-
     private void Update()
     {
         if (PlayerTarget.IsDead())
