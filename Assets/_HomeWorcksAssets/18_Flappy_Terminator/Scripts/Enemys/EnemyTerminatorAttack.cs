@@ -16,7 +16,10 @@ public class EnemyTerminatorAttack : MonoBehaviour
 
         if (_currentTime >= _delay)
         {
-            Instantiate(_bullet,new Vector3(transform.position.x+_bulletOffsetX,transform.position.y,transform.position.z),Quaternion.identity);
+            Instantiate(_bullet,
+                new Vector3(transform.position.x + _bulletOffsetX, transform.position.y, transform.position.z),
+                Quaternion.identity);
+
             _currentTime = 0;
         }
     }
