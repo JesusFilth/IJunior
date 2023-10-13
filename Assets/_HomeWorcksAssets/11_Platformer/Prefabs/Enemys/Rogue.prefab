@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 3536972298315771653}
   - component: {fileID: 3536972298315771651}
   - component: {fileID: 3536972298315771652}
+  - component: {fileID: 5557517296864264696}
   m_Layer: 10
   m_Name: Rogue
   m_TagString: Untagged
@@ -1193,6 +1194,7 @@ MonoBehaviour:
   - {fileID: 3536972298315771654}
   - {fileID: 3536972298315771653}
   - {fileID: 3536972298315771651}
+  - {fileID: 5557517296864264696}
   _damage: 1
   _delay: 2
   _rayAttackDistance: 2
@@ -1239,7 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 3478005497930945159}
-  _rayDistance: 4
+  _rayDistance: 5
   _rayOffsetY: 0.5
   _layerMask:
     serializedVersion: 2
@@ -1271,6 +1273,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transition: []
   _timeToDestroy: 3
+--- !u!114 &5557517296864264696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478984616517496761}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5552f53a6a99ded4a97c7add6f17f2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetState: {fileID: 3536972298315771674}
+  _rayAttackDistance: 1.5
+  _rayOffsetY: 0.5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &3478984616794025363
 GameObject:
   m_ObjectHideFlags: 0
