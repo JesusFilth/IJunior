@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoadRunnerSpawner : Pool
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private UnityEngine.GameObject _prefab;
     [SerializeField] private int _capasity;
 
     [SerializeField] private Vector3 _startFirstModelPosition;
@@ -17,16 +17,16 @@ public class RoadRunnerSpawner : Pool
 
     private void Start()
     {
-        if (TryGetObject(out GameObject obj))
-            CreateObject(obj, _startFirstModelPosition);
+        if (TryGetObject(out UnityEngine.GameObject obj))
+            base.CreateObject(obj, _startFirstModelPosition);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out RoadRunnerMovement road))
         {
-            if (TryGetRandomObject(out GameObject obj))
-                CreateObject(obj, _startSpawnModelPosition);
+            if (TryGetRandomObject(out UnityEngine.GameObject obj))
+                base.CreateObject(obj, _startSpawnModelPosition);
         }
     }
 
@@ -42,7 +42,7 @@ public class RoadRunnerSpawner : Pool
 
         for (int i = 0; i < _capasity; i++)
         {
-            GameObject temp = Instantiate(_prefab, parent);
+            UnityEngine.GameObject temp = Instantiate(_prefab, parent);
             temp.SetActive(false);
             Objects.Add(temp);
         }

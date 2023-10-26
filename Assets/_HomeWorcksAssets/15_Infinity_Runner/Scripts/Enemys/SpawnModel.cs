@@ -8,10 +8,10 @@ using UnityEngine;
 [Serializable]
 class SpawnModel
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private UnityEngine.GameObject _prefab;
     [Range(0, 100)]
     [SerializeField] private float _weight = 1.0f;
 
     public float Weight => _weight;
-    public GameObject Prefab => _prefab;
+    public UnityEngine.GameObject Prefab => _prefab;
 }

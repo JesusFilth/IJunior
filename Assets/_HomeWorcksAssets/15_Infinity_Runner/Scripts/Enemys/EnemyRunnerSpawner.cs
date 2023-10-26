@@ -66,7 +66,7 @@ public class EnemyRunnerSpawner : Pool
             parent = Conteiner;
 
         float totalWeight = _spawnModels.Sum(spawnModel => spawnModel.Weight);
-        Dictionary<GameObject, int> countCreatObject = new Dictionary<GameObject, int>();
+        Dictionary<UnityEngine.GameObject, int> countCreatObject = new Dictionary<UnityEngine.GameObject, int>();
 
         foreach (var spawnModel in _spawnModels)
         {
@@ -78,7 +78,7 @@ public class EnemyRunnerSpawner : Pool
         {
             for (int i = 0; i < objCreate.Value; i++)
             {
-                GameObject temp = Instantiate(objCreate.Key, parent);
+                UnityEngine.GameObject temp = Instantiate(objCreate.Key, parent);
                 temp.SetActive(false);
                 Objects.Add(temp);
             }
@@ -91,9 +91,9 @@ public class EnemyRunnerSpawner : Pool
 
         while (enabled)
         {
-            if (TryGetRandomObject(out GameObject enemy))
+            if (TryGetRandomObject(out UnityEngine.GameObject enemy))
             {
-                CreateObject(enemy, _points[Random.Range(0, _points.Length)].position);
+                base.CreateObject(enemy, _points[Random.Range(0, _points.Length)].position);
             }
 
             yield return waitForSeconds;

@@ -50,4 +50,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_19_21_particals.unity
     guid: d6c19167bf07fc040b80c0d70fdb7197
+  - enabled: 1
+    path: Assets/PolygonS/PolygonSciFiWorlds/Scenes/Demo_Explorer_01.unity
+    guid: 8fbc165d579552144af32511c7e676e7
+  - enabled: 1
+    path: Assets/Scenes/homework_22_RTS.unity
+    guid: 5b0c5e17e4d32114c86dfcf6e865947b
   m_configObjects: {}

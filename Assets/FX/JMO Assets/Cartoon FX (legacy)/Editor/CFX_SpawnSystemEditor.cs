@@ -103,7 +103,7 @@ public class CFX_SpawnSystemEditor : Editor
 			GUILayout.BeginHorizontal();
 			
 			EditorGUI.BeginChangeCheck();
-			GameObject obj = (GameObject)EditorGUILayout.ObjectField((this.target as CFX_SpawnSystem).objectsToPreload[i], typeof(GameObject), true);
+            UnityEngine.GameObject obj = (UnityEngine.GameObject)EditorGUILayout.ObjectField((this.target as CFX_SpawnSystem).objectsToPreload[i], typeof(UnityEngine.GameObject), true);
 			if(EditorGUI.EndChangeCheck())
 			{
 #if UNITY_4_2
@@ -142,7 +142,7 @@ public class CFX_SpawnSystemEditor : Editor
 #else
 				Undo.RecordObject(target, string.Format("remove {0} from Spawn System", objectName));
 #endif
-				ArrayUtility.RemoveAt<GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, i);
+                ArrayUtility.RemoveAt<UnityEngine.GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, i);
 				ArrayUtility.RemoveAt<int>(ref (this.target as CFX_SpawnSystem).objectsToPreloadTimes, i);
 				
 				EditorUtility.SetDirty(target);
@@ -160,15 +160,15 @@ public class CFX_SpawnSystemEditor : Editor
 			{
 				foreach(Object o in DragAndDrop.objectReferences)
 				{
-					if(o is GameObject)
+					if(o is UnityEngine.GameObject)
 					{
 						bool already = false;
-						foreach(GameObject otherObj in (this.target as CFX_SpawnSystem).objectsToPreload)
+						foreach(UnityEngine.GameObject otherObj in (this.target as CFX_SpawnSystem).objectsToPreload)
 						{
 							if(o == otherObj)
 							{
 								already = true;
-								Debug.LogWarning("CFX_SpawnSystem: Object has already been added: " + o.name);
+                                Debug.LogWarning("CFX_SpawnSystem: Object has already been added: " + o.name);
 								break;
 							}
 						}
@@ -178,12 +178,12 @@ public class CFX_SpawnSystemEditor : Editor
 #if UNITY_4_2
 							Undo.RegisterUndo(target, string.Format("add {0} to Spawn System", o.name));
 #else
-							Undo.RecordObject(target, string.Format("add {0} to Spawn System", o.name));
+                            Undo.RecordObject(target, string.Format("add {0} to Spawn System", o.name));
 #endif
-							ArrayUtility.Add<GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, (GameObject)o);
-							ArrayUtility.Add<int>(ref (this.target as CFX_SpawnSystem).objectsToPreloadTimes, 1);
-							
-							EditorUtility.SetDirty(target);
+                            ArrayUtility.Add<UnityEngine.GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, (UnityEngine.GameObject)o);
+                            ArrayUtility.Add<int>(ref (this.target as CFX_SpawnSystem).objectsToPreloadTimes, 1);
+
+                            EditorUtility.SetDirty(target);
 						}
 					}
 				}

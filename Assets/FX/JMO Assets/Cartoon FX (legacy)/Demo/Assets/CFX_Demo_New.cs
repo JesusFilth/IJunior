@@ -26,26 +26,26 @@ public class CFX_Demo_New : MonoBehaviour
 
 	//-------------------------------------------------------------
 
-	private GameObject[] ParticleExamples;
+	private UnityEngine.GameObject[] ParticleExamples;
 	private int exampleIndex;
 	private bool slowMo;
 	private Vector3 defaultCamPosition;
 	private Quaternion defaultCamRotation;
 	
-	private List<GameObject> onScreenParticles = new List<GameObject>();
+	private List<UnityEngine.GameObject> onScreenParticles = new List<UnityEngine.GameObject>();
 	
 	//-------------------------------------------------------------
 	
 	void Awake()
 	{
-		List<GameObject> particleExampleList = new List<GameObject>();
+        List<UnityEngine.GameObject> particleExampleList = new List<UnityEngine.GameObject>();
 		int nbChild = this.transform.childCount;
 		for(int i = 0; i < nbChild; i++)
 		{
-			GameObject child = this.transform.GetChild(i).gameObject;
+            UnityEngine.GameObject child = this.transform.GetChild(i).gameObject;
 			particleExampleList.Add(child);
 		}
-		particleExampleList.Sort( delegate(GameObject o1, GameObject o2) { return o1.name.CompareTo(o2.name); } );
+		particleExampleList.Sort( delegate(UnityEngine.GameObject o1, UnityEngine.GameObject o2) { return o1.name.CompareTo(o2.name); } );
 		ParticleExamples = particleExampleList.ToArray();
 		
 		defaultCamPosition = Camera.main.transform.position;
@@ -76,7 +76,7 @@ public class CFX_Demo_New : MonoBehaviour
 			RaycastHit hit = new RaycastHit();
 			if(groundCollider.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 9999f))
 			{
-				GameObject particle = spawnParticle();
+                UnityEngine.GameObject particle = spawnParticle();
 				particle.transform.position = hit.point + particle.transform.position;
 			}
 		}
@@ -157,9 +157,9 @@ public class CFX_Demo_New : MonoBehaviour
 	//-------------------------------------------------------------
 	// SYSTEM
 	
-	private GameObject spawnParticle()
+	private UnityEngine.GameObject spawnParticle()
 	{
-		GameObject particles = (GameObject)Instantiate(ParticleExamples[exampleIndex]);
+        UnityEngine.GameObject particles = (UnityEngine.GameObject)Instantiate(ParticleExamples[exampleIndex]);
 		particles.transform.position = new Vector3(0,particles.transform.position.y,0);
 		#if UNITY_3_5
 			particles.SetActiveRecursively(true);
@@ -230,7 +230,7 @@ public class CFX_Demo_New : MonoBehaviour
 		{
 			if(onScreenParticles[i] != null)
 			{
-				GameObject.Destroy(onScreenParticles[i]);
+                UnityEngine.GameObject.Destroy(onScreenParticles[i]);
 			}
 			
 			onScreenParticles.RemoveAt(i);

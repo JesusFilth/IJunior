@@ -238,9 +238,9 @@ public class CFXEasyEditor : EditorWindow
 
 			if(GUILayout.Button("Play", EditorStyles.miniButtonLeft, GUILayout.Width(50f)))
 			{
-				foreach(GameObject go in Selection.gameObjects)
+				foreach(UnityEngine.GameObject go in Selection.gameObjects)
 				{
-					ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
+                    ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
 					if(systems.Length == 0) continue;
 					foreach(ParticleSystem system in systems)
 						system.Play(pref_IncludeChildren);
@@ -248,9 +248,9 @@ public class CFXEasyEditor : EditorWindow
 			}
 			if(GUILayout.Button("Pause", EditorStyles.miniButtonMid, GUILayout.Width(50f)))
 			{
-				foreach(GameObject go in Selection.gameObjects)
+				foreach(UnityEngine.GameObject go in Selection.gameObjects)
 				{
-					ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
+                    ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
 					if(systems.Length == 0) continue;
 					foreach(ParticleSystem system in systems)
 						system.Pause(pref_IncludeChildren);
@@ -258,9 +258,9 @@ public class CFXEasyEditor : EditorWindow
 			}
 			if(GUILayout.Button("Stop", EditorStyles.miniButtonMid, GUILayout.Width(50f)))
 			{
-				foreach(GameObject go in Selection.gameObjects)
+				foreach(UnityEngine.GameObject go in Selection.gameObjects)
 				{
-					ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
+                    ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
 					if(systems.Length == 0) continue;
 					foreach(ParticleSystem system in systems)
 						system.Stop(pref_IncludeChildren);
@@ -268,9 +268,9 @@ public class CFXEasyEditor : EditorWindow
 			}
 			if(GUILayout.Button("Clear", EditorStyles.miniButtonRight, GUILayout.Width(50f)))
 			{
-				foreach(GameObject go in Selection.gameObjects)
+				foreach(UnityEngine.GameObject go in Selection.gameObjects)
 				{
-					ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
+                    ParticleSystem[] systems = go.GetComponents<ParticleSystem>();
 					if(systems.Length == 0) continue;
 					foreach(ParticleSystem system in systems)
 					{
@@ -649,13 +649,13 @@ public class CFXEasyEditor : EditorWindow
 				if (GUILayout.Button("Copy properties to\nselected Object(s)", GUILayout.Height(Mathf.Ceil(EditorGUIUtility.singleLineHeight * 2.1f))))
 				{
 					bool foundPs = false;
-					foreach (GameObject go in Selection.gameObjects)
+					foreach (UnityEngine.GameObject go in Selection.gameObjects)
 					{
 						var system = go.GetComponent<ParticleSystem>();
 						if (system != null)
 						{
 							foundPs = true;
-							CopyModules(copyModulesSourceParticleSystem, system);
+                            CopyModules(copyModulesSourceParticleSystem, system);
 						}
 					}
 
@@ -902,10 +902,10 @@ public class CFXEasyEditor : EditorWindow
 	//Loop effects
 	private void loopEffect(bool setLoop)
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
-			ParticleSystem[] systems;
+            //Scale Shuriken Particles Values
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -913,7 +913,7 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				SerializedObject so = new SerializedObject(ps);
+                SerializedObject so = new SerializedObject(ps);
 				so.FindProperty("looping").boolValue = setLoop;
 				so.ApplyModifiedProperties();
 			}
@@ -923,10 +923,10 @@ public class CFXEasyEditor : EditorWindow
 	//Prewarm effects
 	private void prewarmEffect(bool setPrewarm)
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
-			ParticleSystem[] systems;
+            //Scale Shuriken Particles Values
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -934,7 +934,7 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				SerializedObject so = new SerializedObject(ps);
+                SerializedObject so = new SerializedObject(ps);
 				so.FindProperty("prewarm").boolValue = setPrewarm;
 				so.ApplyModifiedProperties();
 			}
@@ -947,10 +947,10 @@ public class CFXEasyEditor : EditorWindow
 		Undo.IncrementCurrentGroup();
 		int groupId = Undo.GetCurrentGroup();
 
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
-			ParticleSystem[] systems;
+            //Scale Shuriken Particles Values
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -958,17 +958,17 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				Undo.RegisterCompleteObjectUndo(ps, "Apply Particle Scale");
-				Undo.RegisterCompleteObjectUndo(ps.transform, "Apply Particle Scale");
-				ScaleParticleValues(ps, go);
+                Undo.RegisterCompleteObjectUndo(ps, "Apply Particle Scale");
+                Undo.RegisterCompleteObjectUndo(ps.transform, "Apply Particle Scale");
+                ScaleParticleValues(ps, go);
 			}
-			
-			//Scale Lights' range
-			Light[] lights = go.GetComponentsInChildren<Light>();
+
+            //Scale Lights' range
+            Light[] lights = go.GetComponentsInChildren<Light>();
 			foreach(Light light in lights)
 			{
-				Undo.RegisterCompleteObjectUndo(light, "Apply Particle Scale");
-				Undo.RegisterCompleteObjectUndo(light.transform, "Apply Particle Scale");
+                Undo.RegisterCompleteObjectUndo(light, "Apply Particle Scale");
+                Undo.RegisterCompleteObjectUndo(light.transform, "Apply Particle Scale");
 				light.range *= ScalingValue;
 				light.transform.localPosition *= ScalingValue;
 			}
@@ -980,9 +980,9 @@ public class CFXEasyEditor : EditorWindow
 	//Change Color
 	private void applyColor()
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			ParticleSystem[] systems;
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -990,7 +990,7 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				SerializedObject psSerial = new SerializedObject(ps);
+                SerializedObject psSerial = new SerializedObject(ps);
 				if(!AffectAlpha)
 				{
 					psSerial.FindProperty("InitialModule.startColor.maxColor").colorValue = new Color(ColorValue.r, ColorValue.g, ColorValue.b, psSerial.FindProperty("InitialModule.startColor.maxColor").colorValue.a);
@@ -1079,9 +1079,9 @@ public class CFXEasyEditor : EditorWindow
 
 	private void GenericProcessColors(System.Func<Color, Color> callback)
 	{
-		foreach (GameObject go in Selection.gameObjects)
+		foreach (UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			ParticleSystem[] systems;
+            ParticleSystem[] systems;
 			if (pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -1089,13 +1089,13 @@ public class CFXEasyEditor : EditorWindow
 
 			foreach (ParticleSystem ps in systems)
 			{
-				SerializedObject psSerial = new SerializedObject(ps);
+                SerializedObject psSerial = new SerializedObject(ps);
 
-				if (TintStartColor)					GenericEditColorProperty(psSerial.FindProperty("InitialModule.startColor"), callback);
-				if (TintColorModule)				GenericEditColorProperty(psSerial.FindProperty("ColorModule.gradient"), callback);
-				if (TintColorSpeedModule)			GenericEditColorProperty(psSerial.FindProperty("ColorBySpeedModule.gradient"), callback);
-				if (TintCustomData1)				GenericEditColorProperty(psSerial.FindProperty("CustomDataModule.color0"), callback);
-				if (TintCustomData2)				GenericEditColorProperty(psSerial.FindProperty("CustomDataModule.color1"), callback);
+				if (TintStartColor) GenericEditColorProperty(psSerial.FindProperty("InitialModule.startColor"), callback);
+				if (TintColorModule) GenericEditColorProperty(psSerial.FindProperty("ColorModule.gradient"), callback);
+				if (TintColorSpeedModule) GenericEditColorProperty(psSerial.FindProperty("ColorBySpeedModule.gradient"), callback);
+				if (TintCustomData1) GenericEditColorProperty(psSerial.FindProperty("CustomDataModule.color0"), callback);
+				if (TintCustomData2) GenericEditColorProperty(psSerial.FindProperty("CustomDataModule.color1"), callback);
 
 				psSerial.ApplyModifiedProperties();
 			}
@@ -1125,7 +1125,7 @@ public class CFXEasyEditor : EditorWindow
 							var animateColor = prop.FindPropertyRelative("animateColor");
 							if (animateColor.boolValue)
 							{
-								GenericEditGradient(prop.FindPropertyRelative("colorGradient"), callback);
+                                GenericEditGradient(prop.FindPropertyRelative("colorGradient"), callback);
 							}
 						}
 						psEffect.ApplyModifiedProperties();
@@ -1178,9 +1178,9 @@ public class CFXEasyEditor : EditorWindow
 		if(substract)
 			lightness *= -1f;
 		
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			ParticleSystem[] systems;
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -1188,16 +1188,16 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				SerializedObject psSerial = new SerializedObject(ps);
+                SerializedObject psSerial = new SerializedObject(ps);
 				
 				if(TintStartColor)
-					GenericAddLightness(psSerial.FindProperty("InitialModule.startColor"), lightness);
+                    GenericAddLightness(psSerial.FindProperty("InitialModule.startColor"), lightness);
 				
 				if(TintColorModule)
-					GenericAddLightness(psSerial.FindProperty("ColorModule.gradient"), lightness);
+                    GenericAddLightness(psSerial.FindProperty("ColorModule.gradient"), lightness);
 				
 				if(TintColorSpeedModule)
-					GenericAddLightness(psSerial.FindProperty("ColorBySpeedModule.gradient"), lightness);
+                    GenericAddLightness(psSerial.FindProperty("ColorBySpeedModule.gradient"), lightness);
 				
 				psSerial.ApplyModifiedProperties();
 				psSerial.Update();
@@ -1422,9 +1422,9 @@ public class CFXEasyEditor : EditorWindow
 	//Scale Lifetime only
 	private void applySpeed()
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			ParticleSystem[] systems;
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -1446,10 +1446,10 @@ public class CFXEasyEditor : EditorWindow
 	//Set Duration
 	private void applyDuration()
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
-			ParticleSystem[] systems;
+            //Scale Shuriken Particles Values
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -1457,7 +1457,7 @@ public class CFXEasyEditor : EditorWindow
 			
 			foreach(ParticleSystem ps in systems)
 			{
-				SerializedObject so = new SerializedObject(ps);
+                SerializedObject so = new SerializedObject(ps);
 				so.FindProperty("lengthInSec").floatValue = DurationValue;
 				so.ApplyModifiedProperties();
 			}
@@ -1467,9 +1467,9 @@ public class CFXEasyEditor : EditorWindow
 	//Change delay
 	private void applyDelay()
 	{
-		foreach(GameObject go in Selection.gameObjects)
+		foreach(UnityEngine.GameObject go in Selection.gameObjects)
 		{
-			ParticleSystem[] systems;
+            ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
 			else
@@ -1628,7 +1628,7 @@ public class CFXEasyEditor : EditorWindow
 	*/
 
 	//Scale System
-	private void ScaleParticleValues(ParticleSystem ps, GameObject parent)
+	private void ScaleParticleValues(ParticleSystem ps, UnityEngine.GameObject parent)
 	{
 		//Particle System
 		if (ps.gameObject != parent)

@@ -12,7 +12,7 @@ public class CFX_AutodestructWhenNoChildren : MonoBehaviour
 	{
 		if( transform.childCount == 0)
 		{
-			GameObject.Destroy(this.gameObject);
+            UnityEngine.GameObject.Destroy(this.gameObject);
 		}
 	}
 }

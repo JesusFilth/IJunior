@@ -7,9 +7,9 @@ public abstract class Pool : MonoBehaviour
 {
     [SerializeField] protected Transform Conteiner;
 
-    protected List<GameObject> Objects = new List<GameObject>();
+    protected List<UnityEngine.GameObject> Objects = new List<UnityEngine.GameObject>();
 
-    protected bool TryGetObject(out GameObject objPool)
+    protected bool TryGetObject(out UnityEngine.GameObject objPool)
     {
         objPool = null;
 
@@ -24,14 +24,14 @@ public abstract class Pool : MonoBehaviour
         return true;
     }
 
-    protected bool TryGetRandomObject(out GameObject objPool)
+    protected bool TryGetRandomObject(out UnityEngine.GameObject objPool)
     {
         objPool = null;
 
         if (Objects.Count == 0)
             return false;
 
-        GameObject[] freeObject;
+        UnityEngine.GameObject[] freeObject;
 
         try
         {
@@ -47,7 +47,7 @@ public abstract class Pool : MonoBehaviour
         return true;
     }
 
-    protected virtual void CreateObject(GameObject obj, Vector3 position)
+    protected virtual void CreateObject(UnityEngine.GameObject obj, Vector3 position)
     {
         obj.SetActive(true);
         obj.transform.position = position;

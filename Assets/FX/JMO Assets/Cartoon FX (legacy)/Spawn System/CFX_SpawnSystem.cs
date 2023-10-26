@@ -22,7 +22,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 	/// <param name='activateObject'>
 	/// Activates the object before returning it.
 	/// </param>
-	static public GameObject GetNextObject(GameObject sourceObj, bool activateObject = true)
+	static public UnityEngine.GameObject GetNextObject(UnityEngine.GameObject sourceObj, bool activateObject = true)
 	{
 		int uniqueId = sourceObj.GetInstanceID();
 		
@@ -33,7 +33,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 		}
 		
 		int cursor = instance.poolCursors[uniqueId];
-		GameObject returnObj = null;
+        UnityEngine.GameObject returnObj = null;
 		if(instance.onlyGetInactiveObjects)
 		{
 			int loop = cursor;
@@ -86,7 +86,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 	/// <param name='poolSize'>
 	/// The number of times it will be instantiated in the pool (i.e. the max number of same object that would appear simultaneously in your Scene).
 	/// </param>
-	static public void PreloadObject(GameObject sourceObj, int poolSize = 1)
+	static public void PreloadObject(UnityEngine.GameObject sourceObj, int poolSize = 1)
 	{
 		instance.addObjectToPool(sourceObj, poolSize);
 	}
@@ -97,7 +97,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 	/// <param name='sourceObj'>
 	/// Source object.
 	/// </param>
-	static public void UnloadObjects(GameObject sourceObj)
+	static public void UnloadObjects(UnityEngine.GameObject sourceObj)
 	{
 		instance.removeObjectsFromPool(sourceObj);
 	}
@@ -120,7 +120,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 	
 	static private CFX_SpawnSystem instance;
 	
-	public GameObject[] objectsToPreload = new GameObject[0];
+	public UnityEngine.GameObject[] objectsToPreload = new UnityEngine.GameObject[0];
 	public int[] objectsToPreloadTimes = new int[0];
 	public bool hideObjectsInHierarchy = false;
 	public bool spawnAsChildren = true;
@@ -128,25 +128,25 @@ public class CFX_SpawnSystem : MonoBehaviour
 	public bool instantiateIfNeeded = false;
 	
 	private bool allObjectsLoaded;
-	private Dictionary<int,List<GameObject>> instantiatedObjects = new Dictionary<int, List<GameObject>>();
+	private Dictionary<int,List<UnityEngine.GameObject>> instantiatedObjects = new Dictionary<int, List<UnityEngine.GameObject>>();
 	private Dictionary<int,int> poolCursors = new Dictionary<int, int>();
 	
-	private void addObjectToPool(GameObject sourceObject, int number)
+	private void addObjectToPool(UnityEngine.GameObject sourceObject, int number)
 	{
 		int uniqueId = sourceObject.GetInstanceID();
 
 		//Add new entry if it doesn't exist
 		if(!instantiatedObjects.ContainsKey(uniqueId))
 		{
-			instantiatedObjects.Add(uniqueId, new List<GameObject>());
+            instantiatedObjects.Add(uniqueId, new List<UnityEngine.GameObject>());
 			poolCursors.Add(uniqueId, 0);
 		}
-		
-		//Add the new objects
-		GameObject newObj;
+
+        //Add the new objects
+        UnityEngine.GameObject newObj;
 		for(int i = 0; i < number; i++)
 		{
-			newObj = (GameObject)Instantiate(sourceObject);
+			newObj = (UnityEngine.GameObject)Instantiate(sourceObject);
 				newObj.SetActive(false);
 
 			//Set flag to not destruct object
@@ -172,7 +172,7 @@ public class CFX_SpawnSystem : MonoBehaviour
 		}
 	}
 	
-	private void removeObjectsFromPool(GameObject sourceObject)
+	private void removeObjectsFromPool(UnityEngine.GameObject sourceObject)
 	{
 		int uniqueId = sourceObject.GetInstanceID();
 		
@@ -185,9 +185,9 @@ public class CFX_SpawnSystem : MonoBehaviour
 		//Destroy all objects
 		for(int i = instantiatedObjects[uniqueId].Count - 1; i >= 0; i--)
 		{
-			GameObject obj = instantiatedObjects[uniqueId][i];
+            UnityEngine.GameObject obj = instantiatedObjects[uniqueId][i];
 			instantiatedObjects[uniqueId].RemoveAt(i);
-			GameObject.Destroy(obj);
+            UnityEngine.GameObject.Destroy(obj);
 		}
 		
 		//Remove pool entry

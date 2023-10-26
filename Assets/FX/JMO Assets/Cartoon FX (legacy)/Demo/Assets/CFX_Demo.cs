@@ -15,7 +15,7 @@ public class CFX_Demo : MonoBehaviour
 	private float order = -5.0f;
 	
 	public Material groundMat, waterMat;
-	public GameObject[] ParticleExamples;
+	public UnityEngine.GameObject[] ParticleExamples;
 	
 	private Dictionary<string,float> ParticlesYOffsetD = new Dictionary<string, float>
 	{
@@ -56,14 +56,14 @@ public class CFX_Demo : MonoBehaviour
 		RaycastHit hit = new RaycastHit();
 		if(this.GetComponent<Collider>().Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 9999f))
 		{
-			GameObject particle = spawnParticle();
+            UnityEngine.GameObject particle = spawnParticle();
 			particle.transform.position = hit.point + particle.transform.position;
 		}
 	}
 	
-	private GameObject spawnParticle()
+	private UnityEngine.GameObject spawnParticle()
 	{
-		GameObject particles = (GameObject)Instantiate(ParticleExamples[exampleIndex]);
+        UnityEngine.GameObject particles = (UnityEngine.GameObject)Instantiate(ParticleExamples[exampleIndex]);
 		
 		#if UNITY_3_5
 			particles.SetActiveRecursively(true);
@@ -141,7 +141,7 @@ public class CFX_Demo : MonoBehaviour
 	{
 		
 	LOOP:
-		GameObject particles = spawnParticle();
+        UnityEngine.GameObject particles = spawnParticle();
 		
 		if(orderedSpawns)
 		{

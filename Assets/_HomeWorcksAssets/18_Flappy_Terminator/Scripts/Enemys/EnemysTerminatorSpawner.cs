@@ -65,8 +65,8 @@ public class EnemysTerminatorSpawner : Pool
 
         while (enabled)
         {
-            if(TryGetObject(out GameObject obj))
-                CreateObject(obj, _points[Random.Range(0, _points.Length)].position);
+            if(TryGetObject(out UnityEngine.GameObject obj))
+                base.CreateObject(obj, _points[Random.Range(0, _points.Length)].position);
 
             yield return waitForSeconds;
         }

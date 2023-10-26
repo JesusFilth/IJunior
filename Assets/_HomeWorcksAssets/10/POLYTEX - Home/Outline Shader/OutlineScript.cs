@@ -20,7 +20,7 @@ public class OutlineScript : MonoBehaviour
     Renderer CreateOutline(Material outlineMat, float scaleFactor, Color color)
     {
 
-        GameObject outlineObject = Instantiate(this.gameObject, transform.position, transform.rotation, transform);
+        UnityEngine.GameObject outlineObject = Instantiate(this.gameObject, transform.position, transform.rotation, transform);
 
         theCollider = outlineObject.gameObject.GetComponent(typeof(Collider));
         Destroy(theCollider);
