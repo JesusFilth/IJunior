@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class RTSSlave : MonoBehaviour
 {
-    [SerializeField] private Transform _mainBasePosition;
     [SerializeField] private Transform _mineralInHandParent;
     [SerializeField] private Vector3 _handMineralPosition;
     [SerializeField] private Quaternion _handMineralRotation;
+
+    private Transform _mainBasePosition;
 
     private void Start()
     {
@@ -32,10 +33,24 @@ public class RTSSlave : MonoBehaviour
         CurrentMineral = currentMineral;
     }
 
+    public void SetMainBasePosition(Transform mainBasePosition)
+    {
+        _mainBasePosition = mainBasePosition;
+    }
+
     public void PickUpMineral()
     {
+        if (CurrentMineral == null || _mineralInHandParent == null)
+            return;
+
         CurrentMineral.transform.parent = _mineralInHandParent;
         CurrentMineral.transform.localPosition = _handMineralPosition;
         CurrentMineral.transform.localRotation = _handMineralRotation;
+    }
+
+    public void PutOnMineral()
+    {
+        CurrentMineral = null;
+        ToFree();
     }
 }

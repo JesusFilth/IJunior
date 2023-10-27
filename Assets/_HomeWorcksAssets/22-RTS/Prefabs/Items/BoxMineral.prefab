@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3582932620079296290}
   - component: {fileID: 3574952487504941786}
   - component: {fileID: -6589067718508735015}
-  - component: {fileID: 7228969505743461618}
+  - component: {fileID: 3446341925843188197}
   m_Layer: 0
   m_Name: BoxMineral
   m_TagString: Untagged
@@ -181,16 +181,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c408bcc18f097541a1c357bbd92c517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &7228969505743461618
-SphereCollider:
+  _count: 1
+--- !u!65 &3446341925843188197
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3588104483286058564}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.09
+  m_Size: {x: 1.1167188, y: 0.88521177, z: 1.1167139}
   m_Center: {x: 0, y: 0.44222352, z: 0}

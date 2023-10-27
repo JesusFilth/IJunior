@@ -39,8 +39,8 @@ public class RTSStateSlavePickUpMineral : RTSState
     private IEnumerator PickingUp()
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_delay);
-        _slaveMovement.ToPickUp();
         _slave.SetBusy(true);
+        _slaveMovement.ToPickUp();
 
         yield return waitForSeconds;
 

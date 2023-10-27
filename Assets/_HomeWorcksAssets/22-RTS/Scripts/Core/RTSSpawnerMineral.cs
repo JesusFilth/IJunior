@@ -12,8 +12,7 @@ public class RTSSpawnerMineral : MonoBehaviour
     [SerializeField] private Transform _startPerimeter;
     [SerializeField] private Transform _endPerimeter;
     [Space]
-    [SerializeField] private Transform _startBuildPerimeter;
-    [SerializeField] private Transform _endBuildPerimeter;
+    [SerializeField] private LayerMask _layerMask;
 
     private IEnumerator _creating;
     private RTSPoolMineral _pool;
@@ -72,13 +71,14 @@ public class RTSSpawnerMineral : MonoBehaviour
 
     private bool CheckPosition(float positionX, float positionZ)
     {
-        if (positionX >= _startBuildPerimeter.position.x
-            && positionX <= _endBuildPerimeter.position.x
-            && positionZ >= _startBuildPerimeter.position.z
-            && positionZ <= _endBuildPerimeter.position.z)
-        {
+        float rayDistance = 1.5f;
+        float positionY = - 0.5f;
+        Vector3 rayPosition = new Vector3(positionX, positionY, positionZ);
+
+        RaycastHit[] hits = Physics.RaycastAll(rayPosition, Vector3.up, rayDistance, _layerMask);
+
+        if (hits.Length != 0)
             return false;
-        }
 
         return true;
     }

@@ -25,6 +25,7 @@ public class RTSMainBase : MonoBehaviour
             {
                 mineralBox.SetReservation();
                 slave.SetCurrentMineral(mineralBox);
+                slave.SetMainBasePosition(transform);
             }
         }
     }
@@ -34,7 +35,7 @@ public class RTSMainBase : MonoBehaviour
         if (other.TryGetComponent(out RTSSlave slave))
         {
             RTSMineralBox tempCurrentMineral = slave.GetCurrentMineral();
-            slave.ToFree();
+            slave.PutOnMineral();
 
             AddMineral(tempCurrentMineral);
             ResetCurrentMineral(tempCurrentMineral);

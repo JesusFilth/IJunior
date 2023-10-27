@@ -21,9 +21,11 @@ public class RTSSlaveMovement : MonoBehaviour
 
     public void ToIdel()
     {
+        if (_animator == null)
+            return;
+
         _animator.SetBool(RTSAnimationData.Params.IsWalk, false);
         _animator.SetBool(RTSAnimationData.Params.IsCarry, false);
-        //_agent.ResetPath();
     }
 
     public void MoveToMineral()
