@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RTSMainBase : MonoBehaviour
 {
     [SerializeField] private Transform _boxMineralConteiner;
     [SerializeField] private Transform _slaveUnitConteiner;
+
+    private int _minerals = 0;
+
+    public UnityAction<int> MineralChanged;
+
+    private void Start()
+    {
+        MineralChanged?.Invoke(_minerals);
+    }
 
     private void Update()
     {
@@ -16,6 +26,18 @@ public class RTSMainBase : MonoBehaviour
                 mineralBox.SetReservation();
                 slave.SetCurrentMineral(mineralBox);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out RTSSlave slave))
+        {
+            RTSMineralBox tempCurrentMineral = slave.GetCurrentMineral();
+            slave.ToFree();
+
+            AddMineral(tempCurrentMineral);
+            ResetCurrentMineral(tempCurrentMineral);
         }
     }
 
@@ -64,5 +86,18 @@ public class RTSMainBase : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void AddMineral(RTSMineralBox boxMineral)
+    {
+        _minerals += boxMineral.Count;
+        MineralChanged?.Invoke(_minerals);
+    }
+
+    private void ResetCurrentMineral(RTSMineralBox boxMineral)
+    {
+        boxMineral.transform.parent = _boxMineralConteiner;
+        boxMineral.transform.rotation = Quaternion.identity;
+        boxMineral.SetFree();
     }
 }

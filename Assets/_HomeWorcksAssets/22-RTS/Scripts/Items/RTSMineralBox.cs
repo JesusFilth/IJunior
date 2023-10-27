@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RTSMineralBox : MonoBehaviour
 {
+    [SerializeField] private int _count = 1;
+
+    public int Count => _count;
     public bool HasSlave { get; private set; }
 
     public void SetReservation()

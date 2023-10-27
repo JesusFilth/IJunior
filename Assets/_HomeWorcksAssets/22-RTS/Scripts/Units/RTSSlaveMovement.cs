@@ -23,7 +23,7 @@ public class RTSSlaveMovement : MonoBehaviour
     {
         _animator.SetBool(RTSAnimationData.Params.IsWalk, false);
         _animator.SetBool(RTSAnimationData.Params.IsCarry, false);
-        _agent.ResetPath();
+        //_agent.ResetPath();
     }
 
     public void MoveToMineral()

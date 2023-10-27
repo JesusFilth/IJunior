@@ -6,6 +6,9 @@ using UnityEngine;
 public class RTSSlave : MonoBehaviour
 {
     [SerializeField] private Transform _mainBasePosition;
+    [SerializeField] private Transform _mineralInHandParent;
+    [SerializeField] private Vector3 _handMineralPosition;
+    [SerializeField] private Quaternion _handMineralRotation;
 
     private void Start()
     {
@@ -22,17 +25,17 @@ public class RTSSlave : MonoBehaviour
     public bool ToFree() => IsFree = true;
     public bool ToWork() => IsFree = false;
     public bool SetBusy(bool value) => IsBusy = value;
+    public RTSMineralBox GetCurrentMineral() => CurrentMineral;
 
     public void SetCurrentMineral(RTSMineralBox currentMineral)
     {
         CurrentMineral = currentMineral;
     }
 
-    public void PutOnMineral()
+    public void PickUpMineral()
     {
-        CurrentMineral.SetFree();
-        CurrentMineral = null;
-        IsFree = true;
-        Debug.Log("Put on mineral");
+        CurrentMineral.transform.parent = _mineralInHandParent;
+        CurrentMineral.transform.localPosition = _handMineralPosition;
+        CurrentMineral.transform.localRotation = _handMineralRotation;
     }
 }

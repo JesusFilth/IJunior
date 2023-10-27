@@ -21,14 +21,10 @@ public class RTSStateSlavePickUpMineral : RTSState
         if (_slave == null)
             _slave = GetComponent<RTSSlave>();
 
-
         if (_pickingUp == null)
             _pickingUp = PickingUp();
 
         StartCoroutine(_pickingUp);
-
-        //брать ящик в руки
-        Debug.Log("брать ящик в руки");
     }
 
     private void OnDisable()
@@ -48,6 +44,7 @@ public class RTSStateSlavePickUpMineral : RTSState
 
         yield return waitForSeconds;
 
+        _slave.PickUpMineral();
         _slave.SetBusy(false);
         _pickingUp = null;
     }
