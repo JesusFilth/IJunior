@@ -9,20 +9,20 @@ public class RTSSlave : MonoBehaviour
     [SerializeField] private Vector3 _handMineralPosition;
     [SerializeField] private Quaternion _handMineralRotation;
 
-    private Transform _mainBasePosition;
+    private RTSMainBase _mainBase;
 
     private void Start()
     {
         IsFree = true;
     }
 
-    public Transform MainBase => _mainBasePosition;
+    public RTSMainBase MainBase => _mainBase;
     public RTSMineralBox CurrentMineral { get; private set; }
     public bool IsFree { get; private set; }
     public bool IsBusy { get; private set; }
 
     public bool IsHasCurrentMineral() => CurrentMineral != null;
-    public bool IsHasMainBase() => _mainBasePosition != null;
+    public bool IsHasMainBase() => _mainBase != null;
     public bool ToFree() => IsFree = true;
     public bool ToWork() => IsFree = false;
     public bool SetBusy(bool value) => IsBusy = value;
@@ -33,9 +33,9 @@ public class RTSSlave : MonoBehaviour
         CurrentMineral = currentMineral;
     }
 
-    public void SetMainBasePosition(Transform mainBasePosition)
+    public void SetMainBase(RTSMainBase mainBase)
     {
-        _mainBasePosition = mainBasePosition;
+        _mainBase = mainBase;
     }
 
     public void PickUpMineral()
@@ -50,6 +50,7 @@ public class RTSSlave : MonoBehaviour
 
     public void PutOnMineral()
     {
+        MainBase.AddMineral(CurrentMineral);
         CurrentMineral = null;
         ToFree();
     }

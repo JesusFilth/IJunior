@@ -4,11 +4,21 @@ using UnityEngine;
 
 namespace RTS
 {
+    [RequireComponent(typeof(RTSSlave))]
     public class RTSTransitionSlaveDistanceMineral : RTSTransition
     {
-        private void OnTriggerEnter(Collider other)
+        [SerializeField] private float _distance = 1.5f;
+
+        private RTSSlave _slave;
+
+        private void Start()
         {
-            if (other.gameObject.TryGetComponent(out RTSMineralBox box))
+            _slave = GetComponent<RTSSlave>();
+        }
+
+        private void Update()
+        {
+            if (Vector3.Distance(transform.position, _slave.CurrentMineral.gameObject.transform.position) <= _distance)
             {
                 NeedTransit = true;
             }

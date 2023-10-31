@@ -1224,7 +1224,6 @@ GameObject:
   - component: {fileID: 2870381621300481109}
   - component: {fileID: 2870381621300481110}
   - component: {fileID: 2870381621300481112}
-  - component: {fileID: 2870381621300481113}
   - component: {fileID: 2870381621300481114}
   - component: {fileID: 2870381621300481115}
   - component: {fileID: 2870381621300481116}
@@ -1233,7 +1232,8 @@ GameObject:
   - component: {fileID: 2870381621300481095}
   - component: {fileID: 2870381621300481091}
   - component: {fileID: 2870381621300481092}
-  - component: {fileID: 2870381621300481090}
+  - component: {fileID: 7969171460478141334}
+  - component: {fileID: 6421192665570598275}
   m_Layer: 15
   m_Name: Slave
   m_TagString: Untagged
@@ -1343,19 +1343,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &2870381621300481113
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2870381621300481111}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2870381621300481114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,6 +1410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 2870381621300481095}
+  _distance: 1.5
 --- !u!114 &2870381621300481095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,8 +1452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transitions:
-  - {fileID: 2870381621300481090}
---- !u!114 &2870381621300481090
+  - {fileID: 7969171460478141334}
+--- !u!114 &7969171460478141334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1474,10 +1462,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2870381621300481111}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba45b130948a1c42821600bc770d481, type: 3}
+  m_Script: {fileID: 11500000, guid: 6997730f3bbe2654bb34afd2a6f8038f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetState: {fileID: 2870381621300481115}
+  _targetState: {fileID: 6421192665570598275}
+  _distance: 0.2
+--- !u!114 &6421192665570598275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870381621300481111}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88de09022f7a4af48b51c93bdc0a0c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transitions:
+  - {fileID: 2870381621300481116}
 --- !u!1 &2870385151034755605
 GameObject:
   m_ObjectHideFlags: 0
