@@ -21,7 +21,7 @@ namespace RTS
 
         private void Update()
         {
-            if (Vector3.Distance(transform.position, _slave.MainBase.gameObject.transform.position) <= _distance)
+            if (Vector3.Distance(transform.position, _slave.MainBase.PutOnMineralPoint.position) <= _distance)
             {
                 _slaveMovement.ToIdel();
                 NeedTransit = true;

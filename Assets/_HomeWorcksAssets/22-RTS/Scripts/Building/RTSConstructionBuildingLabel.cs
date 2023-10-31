@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RTS
 {
-    [RequireComponent(typeof(RTSBuilding))]
     public class RTSConstructionBuildingLabel : MonoBehaviour
     {
         [SerializeField] private Vector2Int _size = Vector2Int.one;
@@ -17,28 +16,22 @@ namespace RTS
         [SerializeField] private Color _notAvailableColor = Color.red;
 
         private Color _defaultColor = Color.white;
-        private RTSBuilding _building;
 
-        private List<RTSConstructionBuildingLabel> _builds = new List<RTSConstructionBuildingLabel>();
+        private List<RTSBuildingObjectLock> _builds = new List<RTSBuildingObjectLock>();
 
         public Vector2Int Size => _size;
 
         public bool IsAvailable()=>_builds.Count == 0;
 
-        private void OnEnable()
-        {
-            _building = GetComponent<RTSBuilding>();
-        }
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out RTSConstructionBuildingLabel build))
+            if (other.gameObject.TryGetComponent(out RTSBuildingObjectLock build))
                 _builds.Add(build);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out RTSConstructionBuildingLabel build))
+            if (other.gameObject.TryGetComponent(out RTSBuildingObjectLock build))
                 _builds.Remove(build);
         }
 

@@ -42,7 +42,7 @@ public class RTSSlaveMovement : MonoBehaviour
         if (_slave.IsHasMainBase() == false)
             return;
 
-        _agent.SetDestination(_slave.MainBase.gameObject.transform.position);
+        _agent.SetDestination(_slave.MainBase.PutOnMineralPoint.position);
         _animator.SetBool(RTSAnimationData.Params.IsCarry, true);
         _animator.SetBool(RTSAnimationData.Params.IsWalk, true);
     }

@@ -8,6 +8,10 @@ public class RTSMainBase : RTSBuilding
 {
     [SerializeField] private Transform _boxMineralConteiner;
     [SerializeField] private Transform _slaveUnitConteiner;
+    [Space]
+    [SerializeField] private Transform _putOnMineralPoint;
+
+    public Transform PutOnMineralPoint => _putOnMineralPoint;
 
     private int _minerals = 0;
 

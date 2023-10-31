@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RTS
 {
@@ -17,16 +14,6 @@ namespace RTS
         private void Awake()
         {
             _mainCamera = Camera.main;
-        }
-
-        public void StartPlacingBuilding(RTSConstructionBuildingLabel buildingPrefab)
-        {
-            if (_currentBuilding != null)
-            {
-                Destroy(_currentBuilding.gameObject);
-            }
-
-            _currentBuilding = Instantiate(buildingPrefab);
         }
 
         private void Update()
@@ -68,6 +55,16 @@ namespace RTS
                     }
                 }
             }
+        }
+
+        public void StartPlacingBuilding(RTSConstructionBuildingLabel buildingPrefab)
+        {
+            if (_currentBuilding != null)
+            {
+                Destroy(_currentBuilding.gameObject);
+            }
+
+            _currentBuilding = Instantiate(buildingPrefab);
         }
     }
 }
