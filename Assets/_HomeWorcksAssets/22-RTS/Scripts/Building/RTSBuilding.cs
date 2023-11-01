@@ -4,8 +4,13 @@ using UnityEngine;
 
 namespace RTS
 {
-    public class RTSBuilding : MonoBehaviour
+    public abstract class RTSBuilding : MonoBehaviour
     {
-        
+        [SerializeField] protected RTSGameStats _gameStats;
+
+        public virtual void Init(RTSGameStats stats)
+        {
+            _gameStats = stats;
+        }
     }
 }

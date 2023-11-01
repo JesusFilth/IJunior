@@ -7,7 +7,7 @@ namespace RTS
 {
     public class RTSStats : MonoBehaviour
     {
-        [SerializeField] private RTSMainBase _mainBase;
+        [SerializeField] private RTSGameStats _mainBase;
 
         [SerializeField] private TMP_Text _mineralText;
 

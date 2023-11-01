@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(RTSHarvester))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class RTSStateMoveToMineral : RTSState
+public class RTSStateHarvesterMoveToMineral : RTSState
 {
     private RTSHarvester _harvester;
     private NavMeshAgent _agent;

@@ -2,10 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RTSHarvester))]
-public class RTSTransitionFindMineral : RTSTransition
+public class RTSTransitionHarvesterFindMineral : RTSTransition
 {
-    [SerializeField] private Transform _mineralConteiner;
-
     private RTSHarvester _harvester;
 
     private void Start()
@@ -15,7 +13,7 @@ public class RTSTransitionFindMineral : RTSTransition
 
     private void Update()
     {
-        if (_mineralConteiner == null)
+        if (_harvester.GetMineralConteiner() == null)
             return;
 
         if (TryGetActives(out List<GameObject> activeMinerals))
@@ -42,11 +40,15 @@ public class RTSTransitionFindMineral : RTSTransition
     private bool TryGetActives(out List<GameObject> activeMinerals)
     {
         activeMinerals = new List<GameObject>();
+        Transform minerals = _harvester.GetMineralConteiner();
 
-        for (int i = 0; i < _mineralConteiner.childCount; i++)
+        if (minerals == null)
+            return false;
+
+        for (int i = 0; i < minerals.childCount; i++)
         {
-            if (_mineralConteiner.GetChild(i).gameObject.activeSelf)
-                activeMinerals.Add(_mineralConteiner.GetChild(i).gameObject);
+            if (minerals.GetChild(i).gameObject.activeSelf)
+                activeMinerals.Add(minerals.GetChild(i).gameObject);
         }
 
         if (activeMinerals.Count != 0)

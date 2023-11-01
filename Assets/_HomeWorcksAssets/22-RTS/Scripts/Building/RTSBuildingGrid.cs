@@ -7,6 +7,8 @@ namespace RTS
     {
         [SerializeField] private Transform _startGridPosition;
         [SerializeField] private Transform _endGridPosition;
+        [Space]
+        [SerializeField] private RTSGameStats _gameStats;
 
         private RTSConstructionBuildingLabel _currentBuilding;
         private Camera _mainCamera;
@@ -45,7 +47,7 @@ namespace RTS
 
                     if (available && Input.GetMouseButtonDown(0))
                     {
-                        _currentBuilding.SetDefaultColor();
+                        _currentBuilding.Build(_gameStats);
                         _currentBuilding = null;
                     }
 

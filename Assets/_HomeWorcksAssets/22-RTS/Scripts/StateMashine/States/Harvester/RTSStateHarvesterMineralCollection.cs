@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RTSHarvester))]
-public class RTSStateMineralCollection : RTSState
+public class RTSStateHarvesterMineralCollection : RTSState
 {
     private RTSHarvester _harvester;
     private bool _isProcess = false;

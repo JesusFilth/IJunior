@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RTSTransitionDistanceMineral : RTSTransition
+public class RTSTransitionHarvesterDistanceMineral : RTSTransition
 {
     private void OnTriggerEnter(Collider other)
     {

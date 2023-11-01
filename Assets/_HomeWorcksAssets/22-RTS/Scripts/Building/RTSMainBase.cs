@@ -7,20 +7,19 @@ using UnityEngine.Events;
 public class RTSMainBase : RTSBuilding
 {
     [SerializeField] private Transform _boxMineralConteiner;
+    [SerializeField] private Transform _mineralConteiner;
+    [Space]
+    [SerializeField] private RTSPoolMineral _boxMineralPool;
+    [SerializeField] private RTSSpawnerMineral _mineralSpawner;
+    [Space]
     [SerializeField] private Transform _slaveUnitConteiner;
+    [SerializeField] private Transform _harvesterUnitConteiner;
     [Space]
     [SerializeField] private Transform _putOnMineralPoint;
 
     public Transform PutOnMineralPoint => _putOnMineralPoint;
-
-    private int _minerals = 0;
-
-    public UnityAction<int> MineralChanged;
-
-    private void Start()
-    {
-        MineralChanged?.Invoke(_minerals);
-    }
+    public Transform BoxMineralConteiner => _boxMineralConteiner;
+    public Transform MineralConteiner => _mineralConteiner;
 
     private void Update()
     {
@@ -35,11 +34,23 @@ public class RTSMainBase : RTSBuilding
         }
     }
 
+    public override void Init(RTSGameStats stats)
+    {
+        base.Init(stats);
+        _mineralSpawner.gameObject.SetActive(true);
+    }
+
+    public void CreateBoxMineral(Vector3 position)
+    {
+        if (_boxMineralPool == null)
+            return;
+
+        _boxMineralPool.CreateObject(position);
+    }
+
     public void AddMineral(RTSMineralBox boxMineral)
     {
-        _minerals += boxMineral.Count;
-        MineralChanged?.Invoke(_minerals);
-
+        _gameStats.AddMineral(boxMineral.Count);
         ResetCurrentMineral(boxMineral);
     }
 

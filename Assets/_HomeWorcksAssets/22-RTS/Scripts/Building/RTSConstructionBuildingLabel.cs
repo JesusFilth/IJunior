@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RTS
 {
+    [RequireComponent(typeof(RTSBuilding))]
     public class RTSConstructionBuildingLabel : MonoBehaviour
     {
         [SerializeField] private Vector2Int _size = Vector2Int.one;
@@ -21,7 +22,7 @@ namespace RTS
 
         public Vector2Int Size => _size;
 
-        public bool IsAvailable()=>_builds.Count == 0;
+        public bool IsAvailable() => _builds.Count == 0;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -47,6 +48,12 @@ namespace RTS
                     Gizmos.DrawCube(transform.position + new Vector3(x * _riseGrid, 0, y * _riseGrid), new Vector3(1 * _riseGrid, .1f, 1 * _riseGrid));
                 }
             }
+        }
+
+        public void Build(RTSGameStats stats)
+        {
+            SetDefaultColor();
+            GetComponent<RTSBuilding>().Init(stats);
         }
 
         public void SetAvaliableColor(bool available)

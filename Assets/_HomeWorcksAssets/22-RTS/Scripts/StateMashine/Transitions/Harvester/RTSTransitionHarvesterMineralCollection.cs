@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RTSHarvester))]
-public class RTSTransitionMineralCollection : RTSTransition
+public class RTSTransitionHarvesterMineralCollection : RTSTransition
 {
     private RTSHarvester _harvester;
 
