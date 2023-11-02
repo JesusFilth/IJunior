@@ -50,10 +50,10 @@ namespace RTS
             }
         }
 
-        public void Build(RTSGameStats stats)
+        public void ToBuild()
         {
             SetDefaultColor();
-            GetComponent<RTSBuilding>().Init(stats);
+            GetComponent<RTSBuilding>().Init();
         }
 
         public void SetAvaliableColor(bool available)

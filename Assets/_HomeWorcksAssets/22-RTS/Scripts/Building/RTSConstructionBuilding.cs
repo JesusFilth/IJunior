@@ -3,12 +3,9 @@ using UnityEngine.AI;
 
 namespace RTS
 {
-    public class RTSBuildingGrid : MonoBehaviour
+    public class RTSConstructionBuilding : MonoBehaviour
     {
-        [SerializeField] private Transform _startGridPosition;
-        [SerializeField] private Transform _endGridPosition;
-        [Space]
-        [SerializeField] private RTSGameStats _gameStats;
+        [SerializeField] private float _buildDistance = 70f;
 
         private RTSConstructionBuildingLabel _currentBuilding;
         private Camera _mainCamera;
@@ -34,9 +31,9 @@ namespace RTS
 
                     bool available = true;
 
-                    if (x < _startGridPosition.position.x || x > _endGridPosition.position.x - _currentBuilding.Size.x) 
+                    if (x < transform.position.x - _buildDistance || x > transform.position.x + _buildDistance)
                         available = false;
-                    if (y < _startGridPosition.position.z || y > _endGridPosition.position.z - _currentBuilding.Size.y) 
+                    if (y < transform.position.z - _buildDistance || y > transform.position.z + _buildDistance)
                         available = false;
 
                     if (_currentBuilding.IsAvailable() == false) 
@@ -47,7 +44,7 @@ namespace RTS
 
                     if (available && Input.GetMouseButtonDown(0))
                     {
-                        _currentBuilding.Build(_gameStats);
+                        _currentBuilding.ToBuild();
                         _currentBuilding = null;
                     }
 

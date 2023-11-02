@@ -12,7 +12,7 @@ public class RTSSlaveMovement : MonoBehaviour
     private NavMeshAgent _agent;
     private RTSSlave _slave;
 
-    private void Start()
+    private void OnEnable()
     {
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
@@ -42,7 +42,12 @@ public class RTSSlaveMovement : MonoBehaviour
         if (_slave.IsHasMainBase() == false)
             return;
 
-        _agent.SetDestination(_slave.MainBase.PutOnMineralPoint.position);
+        RTSMainBase mainBase = _slave.Building as RTSMainBase;
+
+        if (mainBase == null)
+            return;
+
+        _agent.SetDestination(mainBase.PutOnMineralPoint.position);
         _animator.SetBool(RTSAnimationData.Params.IsCarry, true);
         _animator.SetBool(RTSAnimationData.Params.IsWalk, true);
     }

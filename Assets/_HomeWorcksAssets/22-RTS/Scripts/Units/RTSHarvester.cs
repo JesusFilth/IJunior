@@ -1,12 +1,12 @@
+using RTS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTSHarvester : MonoBehaviour
+public class RTSHarvester : RTSUnit
 {
     [SerializeField] private float _collectionTime = 3f;
     [SerializeField] private float _speed = 3f;
-    [SerializeField] private RTSMainBase _mainBase;
 
     [SerializeField] private ParticleSystem _collectionEffect;
 
@@ -17,14 +17,14 @@ public class RTSHarvester : MonoBehaviour
 
     public bool IsHasCurrentMineral() => CurrentMineral != null;
 
-    public void Init(RTSMainBase mainBase)
-    {
-        _mainBase = mainBase;
-    }
-
     public Transform GetMineralConteiner()
     {
-        return _mainBase.MineralConteiner;
+        RTSMainBase mainBase = Building as RTSMainBase;
+
+        if (mainBase == null) 
+            return null;
+
+        return mainBase.MineralConteiner;
     }
 
     public void SetCurrentMineral(RTSMineral mineral)
@@ -37,7 +37,12 @@ public class RTSHarvester : MonoBehaviour
         if (CurrentMineral == null)
             return;
 
-        _mainBase.CreateBoxMineral(GetCurrentMineralPosition());
+        RTSMainBase mainBase = Building as RTSMainBase;
+
+        if(mainBase == null) 
+            return;
+
+        mainBase.CreateBoxMineral(GetCurrentMineralPosition());
 
         CurrentMineral.gameObject.SetActive(false);
         CurrentMineral = null;

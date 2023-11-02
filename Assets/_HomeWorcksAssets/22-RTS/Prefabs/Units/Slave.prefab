@@ -1249,7 +1249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870381621300481111}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.6539993, y: 11.444246, z: -30.527}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5000001, y: 1.5, z: 1.5000001}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1290,6 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcadd0bd32e7f44e99aab985511ab86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _building: {fileID: 0}
   _mineralInHandParent: {fileID: 2872785792323776715}
   _handMineralPosition: {x: 0.27, y: 0.22, z: 0.108}
   _handMineralRotation: {x: 0.5050831, y: 0.06335908, z: 0.10713432, w: -0.85404855}

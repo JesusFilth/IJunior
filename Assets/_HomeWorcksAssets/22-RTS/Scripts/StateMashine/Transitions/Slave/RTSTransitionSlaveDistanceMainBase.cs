@@ -12,16 +12,18 @@ namespace RTS
 
         private RTSSlave _slave;
         private RTSSlaveMovement _slaveMovement;
+        private RTSMainBase _mainBase;
 
         private void Start()
         {
             _slave = GetComponent<RTSSlave>();
             _slaveMovement = GetComponent<RTSSlaveMovement>();
+            _mainBase = _slave.Building as RTSMainBase;
         }
 
         private void Update()
         {
-            if (Vector3.Distance(transform.position, _slave.MainBase.PutOnMineralPoint.position) <= _distance)
+            if (Vector3.Distance(transform.position, _mainBase.PutOnMineralPoint.position) <= _distance)
             {
                 _slaveMovement.ToIdel();
                 NeedTransit = true;

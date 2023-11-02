@@ -6,14 +6,15 @@ using UnityEngine.Events;
 
 public class RTSMainBase : RTSBuilding
 {
+    [Space]
     [SerializeField] private Transform _boxMineralConteiner;
     [SerializeField] private Transform _mineralConteiner;
-    [Space]
     [SerializeField] private RTSPoolMineral _boxMineralPool;
-    [SerializeField] private RTSSpawnerMineral _mineralSpawner;
     [Space]
     [SerializeField] private Transform _slaveUnitConteiner;
     [SerializeField] private Transform _harvesterUnitConteiner;
+    [Space]
+    [SerializeField] private GameObject _buildingMechanics;
     [Space]
     [SerializeField] private Transform _putOnMineralPoint;
 
@@ -29,15 +30,14 @@ public class RTSMainBase : RTSBuilding
             {
                 mineralBox.SetReservation();
                 slave.SetCurrentMineral(mineralBox);
-                slave.SetMainBase(this);
+                slave.Init(this);
             }
         }
     }
 
-    public override void Init(RTSGameStats stats)
+    public override void Init()
     {
-        base.Init(stats);
-        _mineralSpawner.gameObject.SetActive(true);
+        _buildingMechanics.SetActive(true);
     }
 
     public void CreateBoxMineral(Vector3 position)
@@ -106,5 +106,16 @@ public class RTSMainBase : RTSBuilding
         boxMineral.transform.parent = _boxMineralConteiner;
         boxMineral.transform.rotation = Quaternion.identity;
         boxMineral.SetFree();
+    }
+
+    public void AddSlave(RTSSlave slavePrefab)
+    {
+        RTSSlave slave = Instantiate(slavePrefab, _slaveUnitConteiner);
+        slave.Init(this);
+    }
+
+    public void AddHarvester()
+    {
+
     }
 }
