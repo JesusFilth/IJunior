@@ -14,9 +14,7 @@ namespace RTS
             if (_slave == null)
                 _slave = GetComponent<RTSSlave>();
 
-            //_slave.LabelBuildBuilding.ToBuild();
             _slave.ToBuildBuilding();
-            Debug.Log("тут можно улучшить еще");
 
             if(_slave.LabelBuildBuilding.TryGetComponent(out RTSMainBase mainBase))
             {

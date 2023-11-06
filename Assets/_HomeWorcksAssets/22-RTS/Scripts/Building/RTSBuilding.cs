@@ -11,12 +11,14 @@ namespace RTS
 
         [SerializeField] protected string Name;
         [SerializeField] protected string Description;
+        [SerializeField] protected bool _isActive;
         [Space]
         [SerializeField] private List<RTSBuildingAction> _buildingProducts;
 
         public List<RTSBuildingAction> BuildingProducts => _buildingProducts;
 
         protected RTSGameStats _gameStats;
+        public bool IsActive => _isActive;
 
         public abstract void Init();
 

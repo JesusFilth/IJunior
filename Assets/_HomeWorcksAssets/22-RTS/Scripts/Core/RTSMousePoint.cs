@@ -7,8 +7,10 @@ namespace RTS
     public class RTSMousePoint : MonoBehaviour
     {
         [SerializeField] private RTSUIBuildingProducts _uiProducts;
+        [SerializeField] private LayerMask _layerMask;
 
         private Camera _mainCamera;
+        private RTSBuilding _currentBuilding;
 
         private void Awake()
         {
@@ -21,17 +23,21 @@ namespace RTS
             {
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask))
                 {
                     if(hit.collider.TryGetComponent(out RTSBuilding building))
                     {
+                        if (building.IsActive == false)
+                            return;
+
                         _uiProducts.Show(building);
                     }
-                    else
-                    {
-                        //_uiProducts.Hide();
-                    }
                 }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                _uiProducts.Hide();
             }
         }
     }

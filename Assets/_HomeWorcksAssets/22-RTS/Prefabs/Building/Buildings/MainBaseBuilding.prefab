@@ -90,7 +90,7 @@ MonoBehaviour:
   _riseGrid: 0
   _availableColor: {r: 0, g: 1, b: 0, a: 1}
   _notAvailableColor: {r: 1, g: 0, b: 0, a: 1}
-  _labelColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.38431373}
+  _labelColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.16470589}
 --- !u!65 &4333343016569039720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,13 +136,14 @@ MonoBehaviour:
   Name: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0431\u0430\u0437\u0430"
   Description: "\u041F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u044C
     \u0438 \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u0442\u044C \u043C\u0438\u043D\u0435\u0440\u0430\u043B\u044B"
+  _isActive: 0
   _buildingProducts:
   - _action:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1062261594003834634}
           m_TargetAssemblyTypeName: RTSMainBase, RTS
-          m_MethodName: AddSlave
+          m_MethodName: CreateSlave
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 2870381621300481108, guid: 71b507fb400ba38479f2e049eaeeb60c, type: 3}
@@ -216,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3724166354206658918}
   - component: {fileID: 1094525660957566896}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8594420074346187178}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9014674146313584214}
   - component: {fileID: 110526816247897499}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Obstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2840064456333811113}
   - component: {fileID: 6089182682220789793}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,7 +1175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2368271651755998080}
   - component: {fileID: 110457088639330961}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Obstacle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677651088416620252}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: NavMeshObstacls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3127,6 +3128,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3812954776368232827}
     m_Modifications:
+    - target: {fileID: 1267061876322034698, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267306456818328260, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1883425062308473940, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3171,9 +3180,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1884973168939164838, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884980246341700163, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885021733208053691, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1885083504362538450, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
       propertyPath: m_Name
       value: Harvestor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885083504362538450, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885219598951218995, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885649159179471078, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885767531952950904, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885826637003338538, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886559180512505130, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886568953165680828, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886581343664431251, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1909391783173610915, guid: 541cab62d00f35646a14649156a0eab2, type: 3}
       propertyPath: _building

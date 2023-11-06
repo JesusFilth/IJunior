@@ -34,6 +34,7 @@ public class RTSMainBase : RTSBuilding
     public override void Init()
     {
         _buildingMechanics.SetActive(true);
+        _isActive = true;
     }
 
     public void SetLabelBuildBuilding(RTSConstructionBuildingLabel labelBuilding)

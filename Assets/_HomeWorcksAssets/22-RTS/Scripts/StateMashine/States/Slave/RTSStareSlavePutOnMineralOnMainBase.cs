@@ -19,6 +19,9 @@ namespace RTS
             if(_slaveMovement == null)
                 _slaveMovement = GetComponent<RTSSlaveMovement>();
 
+            if (_slave.CurrentMineral == null)
+                return;
+
             _slave.PutOnMineral();
             _slave.ToFree();
             _slaveMovement.ToIdel();
