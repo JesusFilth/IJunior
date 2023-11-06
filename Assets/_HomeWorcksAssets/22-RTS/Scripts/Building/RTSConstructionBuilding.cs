@@ -3,21 +3,23 @@ using UnityEngine.AI;
 
 namespace RTS
 {
+    [RequireComponent(typeof(RTSMainBase))]
     public class RTSConstructionBuilding : MonoBehaviour
     {
-        [SerializeField] private float _buildDistance = 70f;
+        [SerializeField] private float _buildRadiusDistance = 70f;
 
-        private RTSConstructionBuildingLabel _currentBuilding;
         private Camera _mainCamera;
+        private RTSMainBase _mainBase;
 
         private void Awake()
         {
             _mainCamera = Camera.main;
+            _mainBase = GetComponent<RTSMainBase>();
         }
 
         private void Update()
         {
-            if (_currentBuilding != null)
+            if (_mainBase.LabelBuildBuilding != null && _mainBase.LabelBuildBuilding.IsNeedBuild == false)
             {
                 var groundPlane = new Plane(Vector3.up, Vector3.zero);
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -31,39 +33,37 @@ namespace RTS
 
                     bool available = true;
 
-                    if (x < transform.position.x - _buildDistance || x > transform.position.x + _buildDistance)
+                    if (x < transform.position.x - _buildRadiusDistance || x > transform.position.x + _buildRadiusDistance)
                         available = false;
-                    if (y < transform.position.z - _buildDistance || y > transform.position.z + _buildDistance)
-                        available = false;
-
-                    if (_currentBuilding.IsAvailable() == false) 
+                    if (y < transform.position.z - _buildRadiusDistance || y > transform.position.z + _buildRadiusDistance)
                         available = false;
 
-                    _currentBuilding.transform.position = new Vector3(x, 0, y);
-                    _currentBuilding.SetAvaliableColor(available);
+                    if (_mainBase.LabelBuildBuilding.IsAvailable() == false)
+                        available = false;
+
+                    _mainBase.LabelBuildBuilding.transform.position = new Vector3(x, 0, y);
+                    _mainBase.LabelBuildBuilding.SetAvaliableColor(available);
 
                     if (available && Input.GetMouseButtonDown(0))
                     {
-                        _currentBuilding.ToBuild();
-                        _currentBuilding = null;
+                        _mainBase.SetBuildLabel();
                     }
 
                     if (Input.GetMouseButton(1))
                     {
-                        Destroy(_currentBuilding.gameObject);
+                        _mainBase.ResetLabelBuilding();
                     }
                 }
             }
         }
 
-        public void StartPlacingBuilding(RTSConstructionBuildingLabel buildingPrefab)
+        public void StartPlacingBuilding(RTSBuildingPrefabKeeper keeper)
         {
-            if (_currentBuilding != null)
-            {
-                Destroy(_currentBuilding.gameObject);
-            }
+            RTSConstructionBuildingLabel prefabLabel = keeper.GetPrefab();
 
-            _currentBuilding = Instantiate(buildingPrefab);
+            _mainBase.ResetLabelBuilding();
+
+            _mainBase.SetLabelBuildBuilding(Instantiate(prefabLabel));
         }
     }
 }

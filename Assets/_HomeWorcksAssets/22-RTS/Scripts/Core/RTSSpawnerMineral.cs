@@ -7,7 +7,7 @@ public class RTSSpawnerMineral : MonoBehaviour
     [SerializeField] float _delay;
     [SerializeField] float _positionY = 0;
 
-    [SerializeField] private float _distance = 70f;
+    [SerializeField] private float _radiusDistance = 70f;
     [SerializeField] private LayerMask _layerMask;
 
     private IEnumerator _creating;
@@ -55,8 +55,8 @@ public class RTSSpawnerMineral : MonoBehaviour
 
         while (flag)
         {
-            positionX = Random.Range(transform.position.x - _distance, transform.position.x + _distance);
-            positionZ = Random.Range(transform.position.z - _distance, transform.position.z + _distance);
+            positionX = Random.Range(transform.position.x - _radiusDistance, transform.position.x + _radiusDistance);
+            positionZ = Random.Range(transform.position.z - _radiusDistance, transform.position.z + _radiusDistance);
 
             if (CheckPosition(positionX, positionZ))
                 flag = false;

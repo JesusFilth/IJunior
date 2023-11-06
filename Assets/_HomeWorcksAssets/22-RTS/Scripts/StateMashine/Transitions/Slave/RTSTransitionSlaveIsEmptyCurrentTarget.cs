@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RTS
 {
     [RequireComponent(typeof(RTSSlave))]
-    public class RTSTransitionSlaveWaitFreeMineral : RTSTransition
+    public class RTSTransitionSlaveIsEmptyCurrentTarget : RTSTransition
     {
         private RTSSlave _slave;
 
@@ -16,11 +16,8 @@ namespace RTS
 
         private void Update()
         {
-            if (_slave.IsHasCurrentMineral())
-            {
-                _slave.ToWork();
+            if (_slave.CurrentTarget == null)
                 NeedTransit = true;
-            }
         }
     }
 }

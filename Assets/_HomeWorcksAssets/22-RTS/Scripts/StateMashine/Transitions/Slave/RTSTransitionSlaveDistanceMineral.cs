@@ -18,7 +18,10 @@ namespace RTS
 
         private void Update()
         {
-            if (Vector3.Distance(transform.position, _slave.CurrentMineral.gameObject.transform.position) <= _distance)
+            if (_slave.CurrentMineral == null)
+                return;
+
+            if (Vector3.Distance(transform.position, _slave.CurrentMineral.transform.position) <= _distance)
             {
                 NeedTransit = true;
             }

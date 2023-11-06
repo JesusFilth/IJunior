@@ -23,8 +23,6 @@ namespace RTS
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    Debug.Log(hit.collider.gameObject.name);
-
                     if(hit.collider.TryGetComponent(out RTSBuilding building))
                     {
                         _uiProducts.Show(building);

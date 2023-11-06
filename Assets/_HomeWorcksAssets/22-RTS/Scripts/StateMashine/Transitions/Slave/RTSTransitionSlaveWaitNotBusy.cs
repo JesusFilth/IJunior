@@ -6,7 +6,7 @@ using UnityEngine.AI;
 namespace RTS
 {
     [RequireComponent(typeof(RTSSlave))]
-    public class RTSTransitionSlavePickUpBusy : RTSTransition
+    public class RTSTransitionSlaveWaitNotBusy : RTSTransition
     {
         private RTSSlave _slave;
 

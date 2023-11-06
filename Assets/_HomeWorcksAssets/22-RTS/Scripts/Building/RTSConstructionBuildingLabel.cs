@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlasticGui.LaunchDiffParameters;
 
 namespace RTS
 {
@@ -8,21 +9,21 @@ namespace RTS
     public class RTSConstructionBuildingLabel : MonoBehaviour
     {
         [SerializeField] private Vector2Int _size = Vector2Int.one;
-        [SerializeField] private Renderer _renderer;
+        [SerializeField] private Renderer[] _renderer;
         [SerializeField] private Transform _slabsParent;
 
         [SerializeField] private float _riseGrid = 1f;
 
         [SerializeField] private Color _availableColor = Color.green;
         [SerializeField] private Color _notAvailableColor = Color.red;
+        [SerializeField] private Color _labelColor = Color.yellow;
+        public Vector2Int Size => _size;
+        public bool IsNeedBuild { get; private set; }
+        public bool HasSlave { get; private set; }
+        public bool IsAvailable() => _builds.Count == 0;
 
         private Color _defaultColor = Color.white;
-
         private List<RTSBuildingObjectLock> _builds = new List<RTSBuildingObjectLock>();
-
-        public Vector2Int Size => _size;
-
-        public bool IsAvailable() => _builds.Count == 0;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -50,30 +51,42 @@ namespace RTS
             }
         }
 
+        public void SetReservation()
+        {
+            HasSlave = true;
+        }
+
         public void ToBuild()
         {
-            SetDefaultColor();
+            SetColor(_defaultColor);
             GetComponent<RTSBuilding>().Init();
+        }
+
+        public void SetLabel()
+        {
+            IsNeedBuild = true;
+            SetColor(_labelColor);
         }
 
         public void SetAvaliableColor(bool available)
         {
             if (available)
-            {
-                _renderer.material.color = _availableColor;
-                SetAvaliableSlabsColor(_availableColor);
-            }
+                SetColor(_availableColor);
             else
-            {
-                _renderer.material.color = _notAvailableColor;
-                SetAvaliableSlabsColor(_notAvailableColor);
-            }
+                SetColor(_notAvailableColor);
         }
 
-        public void SetDefaultColor()
+        private void SetColor(Color color)
         {
-            _renderer.material.color = _defaultColor;
-            SetAvaliableSlabsColor(_defaultColor);
+            if (_renderer == null)
+                return;
+
+            foreach (Renderer render in _renderer)
+            {
+                render.material.color = color;
+            }
+
+            SetAvaliableSlabsColor(color);
         }
 
         private void SetAvaliableSlabsColor(Color color)

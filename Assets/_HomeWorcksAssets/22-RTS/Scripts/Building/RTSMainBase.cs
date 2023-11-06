@@ -17,27 +17,48 @@ public class RTSMainBase : RTSBuilding
     [SerializeField] private GameObject _buildingMechanics;
     [Space]
     [SerializeField] private Transform _putOnMineralPoint;
+    [SerializeField] private Transform _unitCreatePosition;
 
     public Transform PutOnMineralPoint => _putOnMineralPoint;
     public Transform BoxMineralConteiner => _boxMineralConteiner;
     public Transform MineralConteiner => _mineralConteiner;
 
+    public RTSConstructionBuildingLabel LabelBuildBuilding { get; private set; }
+
     private void Update()
     {
-        if(TryGetFreeSlave(out RTSSlave slave))
-        {
-            if (TryGetFreeMineral(out RTSMineralBox mineralBox))
-            {
-                mineralBox.SetReservation();
-                slave.SetCurrentMineral(mineralBox);
-                slave.Init(this);
-            }
-        }
+        CheckBuildBuilding();
+        CheckMineral();
     }
 
     public override void Init()
     {
         _buildingMechanics.SetActive(true);
+    }
+
+    public void SetLabelBuildBuilding(RTSConstructionBuildingLabel labelBuilding)
+    {
+        LabelBuildBuilding = labelBuilding;
+    }
+
+    public void ResetLabelBuilding()
+    {
+        if (LabelBuildBuilding == null)
+            return;
+
+        Destroy(LabelBuildBuilding.gameObject);
+        LabelBuildBuilding = null;
+    }
+
+    public void SetBuildLabel()
+    {
+        LabelBuildBuilding.SetLabel();
+    }
+
+    public void ToBuildBuildingLabel()
+    {
+        LabelBuildBuilding.ToBuild();
+        LabelBuildBuilding = null;
     }
 
     public void CreateBoxMineral(Vector3 position)
@@ -52,6 +73,51 @@ public class RTSMainBase : RTSBuilding
     {
         _gameStats.AddMineral(boxMineral.Count);
         ResetCurrentMineral(boxMineral);
+    }
+
+    public void CreateSlave(RTSSlave slavePrefab)
+    {
+        RTSSlave slave = Instantiate(slavePrefab, _slaveUnitConteiner);
+        slave.transform.position = _unitCreatePosition.transform.position;
+        slave.Init(this);
+    }
+
+    public void AddSleve(RTSSlave slave)
+    {
+        slave.Init(this);
+        slave.transform.parent = _slaveUnitConteiner;
+    }
+
+    public void CreteHarvester()
+    {
+
+    }
+
+    private void CheckMineral()
+    {
+        if (TryGetFreeSlave(out RTSSlave slave))
+        {
+            if (TryGetFreeMineral(out RTSMineralBox mineralBox))
+            {
+                mineralBox.SetReservation();
+                slave.ToCollictionMineral(mineralBox);
+            }
+        }
+    }
+
+    private void CheckBuildBuilding()
+    {
+        if (LabelBuildBuilding == null)
+            return;
+
+        if (LabelBuildBuilding.IsNeedBuild && LabelBuildBuilding.HasSlave == false)
+        {
+            if (TryGetFreeSlave(out RTSSlave slave))
+            {
+                slave.ToBuildBuilding(LabelBuildBuilding);
+                LabelBuildBuilding.SetReservation();
+            }
+        }
     }
 
     private bool TryGetFreeSlave(out RTSSlave slave)
@@ -106,16 +172,5 @@ public class RTSMainBase : RTSBuilding
         boxMineral.transform.parent = _boxMineralConteiner;
         boxMineral.transform.rotation = Quaternion.identity;
         boxMineral.SetFree();
-    }
-
-    public void AddSlave(RTSSlave slavePrefab)
-    {
-        RTSSlave slave = Instantiate(slavePrefab, _slaveUnitConteiner);
-        slave.Init(this);
-    }
-
-    public void AddHarvester()
-    {
-
     }
 }

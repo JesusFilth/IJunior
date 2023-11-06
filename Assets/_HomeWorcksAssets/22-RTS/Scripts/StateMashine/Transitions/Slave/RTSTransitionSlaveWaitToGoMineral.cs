@@ -5,19 +5,24 @@ using UnityEngine;
 namespace RTS
 {
     [RequireComponent(typeof(RTSSlave))]
-    public class RTSTransitionSlaveWaitFreeSlave : RTSTransition
+    [RequireComponent(typeof(RTSSlaveMovement))]
+    public class RTSTransitionSlaveWaitToGoMineral : RTSTransition
     {
         private RTSSlave _slave;
+        private RTSSlaveMovement _slaveMovement;
 
         private void Start()
         {
             _slave = GetComponent<RTSSlave>();
+            _slaveMovement = GetComponent<RTSSlaveMovement>();
         }
 
         private void Update()
         {
-            if (_slave.IsFree)
+            if (_slave.IsHasCurrentMineral())
+            {
                 NeedTransit = true;
+            }
         }
     }
 }

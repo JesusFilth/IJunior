@@ -24,20 +24,24 @@ public class RTSSlaveMovement : MonoBehaviour
         if (_animator == null)
             return;
 
+        _agent.ResetPath();
         _animator.SetBool(RTSAnimationData.Params.IsWalk, false);
         _animator.SetBool(RTSAnimationData.Params.IsCarry, false);
     }
 
-    public void MoveToMineral()
+    public void MoveToTarget()
     {
-        if (_slave.IsHasCurrentMineral() == false)
+        if (_slave == null || _slave.CurrentTarget == null)
             return;
 
-        _agent.SetDestination(_slave.CurrentMineral.transform.position);
+        if (_slave.IsCarry)
+            _animator.SetBool(RTSAnimationData.Params.IsCarry, true);
+
+        _agent.SetDestination(_slave.CurrentTarget.position);
         _animator.SetBool(RTSAnimationData.Params.IsWalk, true);
     }
 
-    public void MoveToMainBase()
+    public void MoveToMainBase_()
     {
         if (_slave.IsHasMainBase() == false)
             return;
@@ -55,6 +59,7 @@ public class RTSSlaveMovement : MonoBehaviour
     public void ToPickUp()
     {
         _agent.ResetPath();
+        _animator.SetBool(RTSAnimationData.Params.IsWalk, false);
         _animator.SetTrigger(RTSAnimationData.Params.PickUp);
     }
 }
