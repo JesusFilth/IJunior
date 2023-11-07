@@ -45,14 +45,10 @@ namespace RTS
                     _mainBase.LabelBuildBuilding.SetAvaliableColor(available);
 
                     if (available && Input.GetMouseButtonDown(0))
-                    {
                         _mainBase.SetBuildLabel();
-                    }
 
                     if (Input.GetMouseButton(1))
-                    {
                         _mainBase.ResetLabelBuilding();
-                    }
                 }
             }
         }
@@ -61,8 +57,10 @@ namespace RTS
         {
             RTSConstructionBuildingLabel prefabLabel = keeper.GetPrefab();
 
-            _mainBase.ResetLabelBuilding();
+            if (_mainBase.HasMineralForBuild() == false)
+                return;
 
+            _mainBase.ResetLabelBuilding();
             _mainBase.SetLabelBuildBuilding(Instantiate(prefabLabel));
         }
     }

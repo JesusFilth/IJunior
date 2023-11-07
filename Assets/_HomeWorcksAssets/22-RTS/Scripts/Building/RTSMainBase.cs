@@ -33,8 +33,11 @@ public class RTSMainBase : RTSBuilding
 
     public override void Init()
     {
+        _gameStats.AddMineral(-Price);
         _buildingMechanics.SetActive(true);
         _isActive = true;
+
+        UpdateNaveMesh();
     }
 
     public void SetLabelBuildBuilding(RTSConstructionBuildingLabel labelBuilding)
@@ -60,38 +63,6 @@ public class RTSMainBase : RTSBuilding
     {
         LabelBuildBuilding.ToBuild();
         LabelBuildBuilding = null;
-    }
-
-    public void CreateBoxMineral(Vector3 position)
-    {
-        if (_boxMineralPool == null)
-            return;
-
-        _boxMineralPool.CreateObject(position);
-    }
-
-    public void AddMineral(RTSMineralBox boxMineral)
-    {
-        _gameStats.AddMineral(boxMineral.Count);
-        ResetCurrentMineral(boxMineral);
-    }
-
-    public void CreateSlave(RTSSlave slavePrefab)
-    {
-        RTSSlave slave = Instantiate(slavePrefab, _slaveUnitConteiner);
-        slave.transform.position = _unitCreatePosition.transform.position;
-        slave.Init(this);
-    }
-
-    public void AddSleve(RTSSlave slave)
-    {
-        slave.Init(this);
-        slave.transform.parent = _slaveUnitConteiner;
-    }
-
-    public void CreteHarvester()
-    {
-
     }
 
     private void CheckMineral()
@@ -120,6 +91,54 @@ public class RTSMainBase : RTSBuilding
             }
         }
     }
+
+    public void AddMineral(RTSMineralBox boxMineral)
+    {
+        _gameStats.AddMineral(boxMineral.Count);
+        ResetCurrentMineral(boxMineral);
+    }
+
+    public void AddSlave(RTSSlave slave)
+    {
+        slave.Init(this);
+        slave.transform.parent = _slaveUnitConteiner;
+    }
+
+    public void CreateSlave(RTSSlave slavePrefab)
+    {
+        if (slavePrefab.Price <= _gameStats.Minerals)
+            return;
+
+        _gameStats.AddMineral(-slavePrefab.Price);
+
+        RTSSlave slave = Instantiate(slavePrefab, _slaveUnitConteiner);
+        slave.transform.position = _unitCreatePosition.transform.position;
+        slave.Init(this);
+    }
+
+    public void CreteHarvester()
+    {
+
+    }
+
+    public void CreateBoxMineral(Vector3 position)
+    {
+        if (_boxMineralPool == null)
+            return;
+
+        _boxMineralPool.CreateObject(position);
+    }
+
+    public void UpdateNaveMesh()
+    {
+        RTSNavMeshUpdate navMesh = _gameStats.gameObject.GetComponent<RTSNavMeshUpdate>();
+
+        if (navMesh == null)
+            return;
+
+        navMesh.ToUpdate();
+    }
+
 
     private bool TryGetFreeSlave(out RTSSlave slave)
     {

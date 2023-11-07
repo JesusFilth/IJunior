@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267061876322034697}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: ModelDitaials
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1268470462980140842}
   - component: {fileID: 1393626456488748048}
   - component: {fileID: 1391716716820501172}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FX_Collection_Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4769,7 +4769,7 @@ GameObject:
   - component: {fileID: 1883256266462643864}
   - component: {fileID: 1899322837245688394}
   - component: {fileID: 1909191199970538592}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_mr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4852,7 +4852,7 @@ GameObject:
   - component: {fileID: 1890906835070423511}
   - component: {fileID: 1898352475799871829}
   - component: {fileID: 1909224354560294025}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_Turret_Large_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4936,7 +4936,7 @@ GameObject:
   - component: {fileID: 1890457710494799523}
   - component: {fileID: 1899199015526107123}
   - component: {fileID: 1909411015857265323}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_Turret_Large_03_Missiles_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5019,8 +5019,6 @@ GameObject:
   - component: {fileID: 1883425062308473940}
   - component: {fileID: 1897438807714239714}
   - component: {fileID: 1909391783173610926}
-  - component: {fileID: 1909391783173610924}
-  - component: {fileID: 1909391783173610925}
   - component: {fileID: 1909391783173610915}
   - component: {fileID: 1909391783173610919}
   - component: {fileID: 1909391783173610912}
@@ -5030,7 +5028,7 @@ GameObject:
   - component: {fileID: 1909391783173610916}
   - component: {fileID: 1909391783173610971}
   - component: {fileID: 1909391783173610918}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Harvestor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5104,35 +5102,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1909391783173610924
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885083504362538450}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.89, y: 2.1115317, z: 7.07}
-  m_Center: {x: 0, y: -0.12541482, z: -0.0000030994415}
---- !u!54 &1909391783173610925
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885083504362538450}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1909391783173610915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5146,6 +5115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _building: {fileID: 0}
+  _price: 0
   _collectionTime: 3
   _speed: 3
   _collectionEffect: {fileID: 1393626456488748048}
@@ -5217,6 +5187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 1909391783173610916}
+  _distance: 6
 --- !u!114 &1909391783173610916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5253,7 +5224,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1885083504362538450}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 4.65
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -5277,7 +5248,7 @@ GameObject:
   - component: {fileID: 1890730575647782855}
   - component: {fileID: 1898965377712359743}
   - component: {fileID: 1909038935335001829}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_Turret_Large_03_Missiles_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5360,7 +5331,7 @@ GameObject:
   - component: {fileID: 1890876066618991268}
   - component: {fileID: 1899105735401568510}
   - component: {fileID: 1907626160140557352}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5443,7 +5414,7 @@ GameObject:
   - component: {fileID: 1883447264930153610}
   - component: {fileID: 1898968012312896606}
   - component: {fileID: 1909192286208742058}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5526,7 +5497,7 @@ GameObject:
   - component: {fileID: 1883199774420324012}
   - component: {fileID: 1899352912044110762}
   - component: {fileID: 1908992824750914710}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5609,7 +5580,7 @@ GameObject:
   - component: {fileID: 1883126908205210382}
   - component: {fileID: 1899142304134357708}
   - component: {fileID: 1907763274877924948}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_ml
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5692,7 +5663,7 @@ GameObject:
   - component: {fileID: 1890586154642036708}
   - component: {fileID: 1898427144804252398}
   - component: {fileID: 1909493473186017438}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_HoverTank_01_Base_HoverPad_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5776,7 +5747,7 @@ GameObject:
   - component: {fileID: 1898330401334668495}
   - component: {fileID: 1907746028703802923}
   - component: {fileID: 1931610446610785091}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: SM_Veh_Turret_Large_03_Launcher_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

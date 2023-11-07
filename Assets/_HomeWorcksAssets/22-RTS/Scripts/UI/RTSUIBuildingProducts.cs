@@ -17,10 +17,12 @@ namespace RTS
         private void OnEnable()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
+            HideDisplay();
         }
 
         public void Show(RTSBuilding building)
         {
+            ClearConteiner();
             ShowDisplay();
             SetNameText(building.GetName());
             InitConteiner(building);

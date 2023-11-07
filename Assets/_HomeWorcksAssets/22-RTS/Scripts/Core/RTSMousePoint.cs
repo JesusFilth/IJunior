@@ -10,7 +10,6 @@ namespace RTS
         [SerializeField] private LayerMask _layerMask;
 
         private Camera _mainCamera;
-        private RTSBuilding _currentBuilding;
 
         private void Awake()
         {

@@ -18,7 +18,7 @@ namespace RTS
 
             if(_slave.LabelBuildBuilding.TryGetComponent(out RTSMainBase mainBase))
             {
-                mainBase.AddSleve(_slave);
+                mainBase.AddSlave(_slave);
             }
 
             _slave.ToFree();
