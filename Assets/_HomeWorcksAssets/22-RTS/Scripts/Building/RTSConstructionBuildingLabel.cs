@@ -9,7 +9,6 @@ namespace RTS
     {
         [SerializeField] private Vector2Int _size = Vector2Int.one;
         [SerializeField] private Renderer[] _renderer;
-        [SerializeField] private Transform _slabsParent;
 
         [SerializeField] private float _riseGrid = 1f;
 
@@ -83,16 +82,6 @@ namespace RTS
             foreach (Renderer render in _renderer)
             {
                 render.material.color = color;
-            }
-
-            SetAvaliableSlabsColor(color);
-        }
-
-        private void SetAvaliableSlabsColor(Color color)
-        {
-            for (int i = 0; i < _slabsParent.childCount; i++)
-            {
-                _slabsParent.GetChild(i).GetComponent<Renderer>().material.color = color;
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -57,11 +58,39 @@ namespace RTS
         {
             RTSConstructionBuildingLabel prefabLabel = keeper.GetPrefab();
 
-            if (_mainBase.HasMineralForBuild() == false)
+            if (HasMineralForBuild(prefabLabel.gameObject) == false)
                 return;
 
+            SetLabelBuilding(prefabLabel);
+        }
+
+        public void StartPlacingBuilding(RTSConstructionBuildingLabel buildLabel)
+        {
+
+            if (HasMineralForBuild(buildLabel.gameObject) == false)
+                return;
+
+            SetLabelBuilding(buildLabel);
+        }
+
+        private bool HasMineralForBuild(GameObject obj)
+        {
+            if (obj == null)
+                return false;
+
+            if(obj.TryGetComponent(out RTSBuilding building))
+            {
+                if (building.Price <= _mainBase.GetMineralsCount())
+                    return true;
+            }
+
+            return false;   
+        }
+
+        private void SetLabelBuilding(RTSConstructionBuildingLabel labelBuilding)
+        {
             _mainBase.ResetLabelBuilding();
-            _mainBase.SetLabelBuildBuilding(Instantiate(prefabLabel));
+            _mainBase.SetLabelBuildBuilding(Instantiate(labelBuilding));
         }
     }
 }

@@ -33,7 +33,9 @@ public class RTSMainBase : RTSBuilding
 
     public override void Init()
     {
-        _gameStats.AddMineral(-Price);
+        base.Init();
+
+        _gameStats.AddMineral(-_price);
         _buildingMechanics.SetActive(true);
         _isActive = true;
 
@@ -106,7 +108,7 @@ public class RTSMainBase : RTSBuilding
 
     public void CreateSlave(RTSSlave slavePrefab)
     {
-        if (slavePrefab.Price <= _gameStats.Minerals)
+        if (slavePrefab.Price > _gameStats.Minerals)
             return;
 
         _gameStats.AddMineral(-slavePrefab.Price);
@@ -137,6 +139,11 @@ public class RTSMainBase : RTSBuilding
             return;
 
         navMesh.ToUpdate();
+    }
+
+    public int GetMineralsCount()
+    {
+        return _gameStats.Minerals;
     }
 
 
