@@ -7,7 +7,7 @@ public class Aid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent(out Stat player))
+        if (collision.transform.TryGetComponent(out Health player))
         {
             player.TakeHeal(_heal);
             Destroy(gameObject);

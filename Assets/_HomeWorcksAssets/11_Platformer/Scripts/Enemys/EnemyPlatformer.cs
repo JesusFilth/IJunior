@@ -1,22 +1,22 @@
 using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using UnityEngine;
 
-[RequireComponent(typeof(Stat))]
+[RequireComponent(typeof(Health))]
 public class EnemyPlatformer : MonoBehaviour
 {
     [SerializeField] private PlayerPlatformer _playerTarget;
 
     public PlayerPlatformer PlayerTarget => _playerTarget;
 
-    private Stat _stat;
+    private Health _health;
 
     private void Awake()
     {
-        _stat = GetComponent<Stat>();
+        _health = GetComponent<Health>();
     }
 
     public bool IsDead()
     {
-        return _stat.IsDead;
+        return _health.IsDead;
     }
 }

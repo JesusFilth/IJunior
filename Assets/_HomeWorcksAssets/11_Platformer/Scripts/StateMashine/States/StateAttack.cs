@@ -45,7 +45,7 @@ public class StateAttack : State
         Debug.DrawRay(rayPosition, rayDirection, Color.red);
 
         if (hit.collider != null)
-            if (hit.collider.TryGetComponent(out Stat player))
+            if (hit.collider.TryGetComponent(out Health player))
                 player.TakeDamage(_damage);
     }
 }

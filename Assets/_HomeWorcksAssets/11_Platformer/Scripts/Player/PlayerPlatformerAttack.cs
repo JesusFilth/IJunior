@@ -35,7 +35,7 @@ public class PlayerPlatformerAttack : MonoBehaviour
             Debug.DrawRay(rayPosition, rayDirection, Color.red);
 
             if (hit.collider != null)
-                if (hit.collider.TryGetComponent(out Stat enemy))
+                if (hit.collider.TryGetComponent(out Health enemy))
                     enemy.TakeDamage(_damage);
         }
     }

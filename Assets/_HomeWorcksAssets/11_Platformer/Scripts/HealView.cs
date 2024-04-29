@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HealView : MonoBehaviour
 {
     [SerializeField] private Image _healFilling;
-    [SerializeField] private Stat _heal;
+    [SerializeField] private Health _heal;
     [SerializeField] private float _maxDeltaChange = 0.07f;
 
     private IEnumerator _changingHealsBarView;
@@ -25,13 +25,13 @@ public class HealView : MonoBehaviour
             throw ex;
         }
 
-        _heal.HealthChanged += ChangeValue;
+        _heal.ValueChanged += ChangeValue;
         _heal.Died += Hide;
     }
 
     private void OnDisable()
     {
-        _heal.HealthChanged -= ChangeValue;
+        _heal.ValueChanged -= ChangeValue;
         _heal.Died -= Hide;
 
         if(_changingHealsBarView != null)

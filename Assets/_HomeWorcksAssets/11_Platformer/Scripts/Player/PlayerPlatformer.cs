@@ -3,38 +3,37 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Stat))]
+[RequireComponent(typeof(Health))]
 public class PlayerPlatformer : MonoBehaviour
 {
-    public UnityAction Died;
+    public event UnityAction Died;
 
     private Animator _animator;
-    private Stat _stat;
+    private Health _health;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _stat = GetComponent<Stat>();
+        _health = GetComponent<Health>();
     }
 
     private void OnEnable()
     {
-        _stat.Died += Die;
+        _health.Died += Die;
     }
 
     private void OnDisable()
     {
-        _stat.Died -= Die;
+        _health.Died -= Die;
     }
 
     public bool IsDead()
     {
-        return _stat.IsDead;
+        return _health.IsDead;
     }
 
     private void Die()
     {
-        Debug.Log("Die");
         _animator.SetTrigger(AnimationData.Params.Dead);
         Died?.Invoke();
     }
