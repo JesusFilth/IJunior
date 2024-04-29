@@ -1,5 +1,6 @@
 using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ public class HealView : MonoBehaviour
 {
     [SerializeField] private Image _healFilling;
     [SerializeField] private Stat _heal;
+    [SerializeField] private float _maxDeltaChange = 0.07f;
+
+    private IEnumerator _changingHealsBarView;
+    private float _targePercentValue = 0;
 
     private void OnEnable()
     {
@@ -28,6 +33,9 @@ public class HealView : MonoBehaviour
     {
         _heal.HealthChanged -= ChangeValue;
         _heal.Died -= Hide;
+
+        if(_changingHealsBarView != null)
+            StopCoroutine(_changingHealsBarView);
     }
 
     private void Validate()
@@ -41,11 +49,28 @@ public class HealView : MonoBehaviour
 
     private void ChangeValue(float valuePercent)
     {
-        _healFilling.fillAmount = valuePercent;
+        _targePercentValue = valuePercent;
+
+        if (_changingHealsBarView == null)
+        {
+            _changingHealsBarView = ChangingTargetValue();
+            StartCoroutine(_changingHealsBarView);
+        }
     }
 
     private void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator ChangingTargetValue()
+    {
+        while (_healFilling.fillAmount != _targePercentValue)
+        {
+            _healFilling.fillAmount = Mathf.MoveTowards(_healFilling.fillAmount, _targePercentValue, _maxDeltaChange);
+            yield return null;
+        }
+
+        _changingHealsBarView = null;
     }
 }

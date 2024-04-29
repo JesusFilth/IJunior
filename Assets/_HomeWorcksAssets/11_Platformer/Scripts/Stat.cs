@@ -45,7 +45,7 @@ namespace Assets._HomeWorcksAssets._11_Platformer.Scripts
 
         private float GetPercentCurrentHealth()
         {
-            if(IsDead)
+            if(IsDead || MaxHealth == 0)
                 return 0;
 
             const float MaxPercent = 100;
