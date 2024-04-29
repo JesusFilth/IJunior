@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class StateAttack : State
 {
-    [SerializeField] private int _damage;
+    [SerializeField] private float _damage = 2f;
     [SerializeField] private float _delay;
     [SerializeField] private float _rayAttackDistance = 2f;
     [SerializeField] private float _rayOffsetY = 0.5f;

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerPlatformer))]
 public class PlayerPlatformerAttack : MonoBehaviour
 {
-    [SerializeField] private int _damage;
+    [SerializeField] private float _damage = 2f;
     [SerializeField] private float _rayAttackDistance = 2f; 
     [SerializeField] private float _rayOffsetY = 0.5f;
     [SerializeField] private LayerMask _layerMask;

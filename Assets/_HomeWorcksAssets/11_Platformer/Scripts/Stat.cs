@@ -9,13 +9,13 @@ namespace Assets._HomeWorcksAssets._11_Platformer.Scripts
 {
     public class Stat : MonoBehaviour
     {
-        [SerializeField] private int _maxHealth;
+        [SerializeField] private float _maxHealth;
 
-        public int MaxHealth => _maxHealth;
-        public int CurrentHealth { get; private set; }
+        public float MaxHealth => _maxHealth;
+        public float CurrentHealth { get; private set; }
         public bool IsDead => CurrentHealth <= 0;
 
-        public event Action<int> HealthChanged;
+        public event Action<float> HealthChanged;
         public event Action Died;
 
         private void Awake()
@@ -25,22 +25,32 @@ namespace Assets._HomeWorcksAssets._11_Platformer.Scripts
 
         private void Start()
         {
-            HealthChanged?.Invoke(CurrentHealth);
+            HealthChanged?.Invoke(GetPercentCurrentHealth());
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
-            CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, int.MaxValue);
-            HealthChanged?.Invoke(CurrentHealth);
+            CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, _maxHealth);
+            HealthChanged?.Invoke(GetPercentCurrentHealth());
 
-            if (CurrentHealth == 0)
+            if (CurrentHealth <= 0)
                 Died?.Invoke();
         }
 
-        public void TakeHeal(int heal)
+        public void TakeHeal(float heal)
         {
             CurrentHealth = Mathf.Clamp(CurrentHealth + heal, 0, _maxHealth);
-            HealthChanged?.Invoke(CurrentHealth);
+            HealthChanged?.Invoke(GetPercentCurrentHealth());
+        }
+
+        private float GetPercentCurrentHealth()
+        {
+            if(IsDead)
+                return 0;
+
+            const float MaxPercent = 100;
+
+            return (MaxPercent / (_maxHealth / CurrentHealth)) / MaxPercent;
         }
     }
 }

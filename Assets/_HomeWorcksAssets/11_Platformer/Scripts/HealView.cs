@@ -5,14 +5,8 @@ using UnityEngine.UI;
 
 public class HealView : MonoBehaviour
 {
-    [SerializeField] private Transform _healConteiner;
+    [SerializeField] private Image _healFilling;
     [SerializeField] private Stat _heal;
-    [SerializeField] private GameObject _healPrefab;
-
-    private void Awake()
-    {
-        Initialize();
-    }
 
     private void OnEnable()
     {
@@ -27,38 +21,31 @@ public class HealView : MonoBehaviour
         }
 
         _heal.HealthChanged += ChangeValue;
+        _heal.Died += Hide;
     }
 
     private void OnDisable()
     {
         _heal.HealthChanged -= ChangeValue;
+        _heal.Died -= Hide;
     }
 
     private void Validate()
     {
-        if (_healConteiner == null)
-            throw new ArgumentNullException(nameof(_healConteiner));
+        if (_healFilling == null)
+            throw new ArgumentNullException(nameof(_healFilling));
 
         if (_heal == null)
             throw new ArgumentNullException(nameof(_heal));
-
-        if (_healPrefab == null)
-            throw new ArgumentNullException(nameof(_healPrefab));
     }
 
-    private void Initialize()
+    private void ChangeValue(float valuePercent)
     {
-        for (int i = 0; i < _heal.MaxHealth; i++)
-        {
-            Instantiate(_healPrefab ,_healConteiner);
-        }
+        _healFilling.fillAmount = valuePercent;
     }
 
-    private void ChangeValue(int value)
+    private void Hide()
     {
-        for (int i = 0; i < _healConteiner.childCount; i++)
-        {
-            _healConteiner.GetChild(i).gameObject.SetActive(value >= (i+1));
-        }
+        gameObject.SetActive(false);
     }
 }
