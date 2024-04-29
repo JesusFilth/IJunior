@@ -42,9 +42,6 @@ EditorBuildSettings:
     path: Assets/Scenes/homework_18_Flappy_Terminator.unity
     guid: 4483105e5cf6aaf439011778d255e93c
   - enabled: 1
-    path: 
-    guid: 39d89ad2b665ef34f811f0a01f828b4e
-  - enabled: 1
     path: Assets/_HomeWorcksAssets/11_Platformer/Characters/Enemys/Rogue/scene.unity
     guid: 0bf53aae9bbc9af4fa49963f7aafbeb8
   - enabled: 1
@@ -56,4 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_22_RTS.unity
     guid: 5b0c5e17e4d32114c86dfcf6e865947b
+  - enabled: 1
+    path: Assets/Scenes/homework_new_01.unity
+    guid: 5167b04a625bf7b40b76e78b3fa7c415
+  - enabled: 1
+    path: Assets/Advance Studios/Medieval Castle/Scenes/Demo.unity
+    guid: 4e0b2b51b6662be4f9d98e95645aff16
   m_configObjects: {}

@@ -1,3 +1,4 @@
+using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +45,7 @@ public class StateAttack : State
         Debug.DrawRay(rayPosition, rayDirection, Color.red);
 
         if (hit.collider != null)
-            if (hit.collider.TryGetComponent(out PlayerPlatformer player))
+            if (hit.collider.TryGetComponent(out Stat player))
                 player.TakeDamage(_damage);
     }
 }

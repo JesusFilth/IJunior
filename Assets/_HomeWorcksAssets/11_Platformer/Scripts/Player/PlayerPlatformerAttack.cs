@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -36,7 +35,7 @@ public class PlayerPlatformerAttack : MonoBehaviour
             Debug.DrawRay(rayPosition, rayDirection, Color.red);
 
             if (hit.collider != null)
-                if (hit.collider.TryGetComponent(out EnemyPlatformer enemy))
+                if (hit.collider.TryGetComponent(out Stat enemy))
                     enemy.TakeDamage(_damage);
         }
     }

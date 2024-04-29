@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using UnityEngine;
 
+[RequireComponent(typeof(Stat))]
 public class EnemyPlatformer : MonoBehaviour
 {
     [SerializeField] private PlayerPlatformer _playerTarget;
-    [SerializeField] private int _health = 3;
+
+    private Stat _stat;
 
     public PlayerPlatformer PlayerTarget => _playerTarget;
 
-    public void TakeDamage(int damage)
+    private void Awake()
     {
-        _health = Mathf.Clamp(_health-damage,0,int.MaxValue);
+        _stat = GetComponent<Stat>();
     }
 
     public bool IsDead()
     {
-        return _health == 0;
+        return _stat.IsDead;
     }
 }

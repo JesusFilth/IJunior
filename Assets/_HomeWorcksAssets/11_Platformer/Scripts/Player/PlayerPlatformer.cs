@@ -1,40 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Stat))]
 public class PlayerPlatformer : MonoBehaviour
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth = 5;
-
     public UnityAction Died;
 
     private Animator _animator;
+    private Stat _stat;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _stat = GetComponent<Stat>();
+    }
 
     private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
+        _stat.Died += Die;
     }
 
-    public void TakeDamage(int damage)
+    private void OnDisable()
     {
-        _health = Mathf.Clamp(_health - damage, 0, int.MaxValue);
-
-        if (_health == 0)
-            Die();
-    }
-
-    public void TakeHeal(int heal)
-    {
-        _health = Mathf.Clamp(_health + heal, 0, _maxHealth);
+        _stat.Died -= Die;
     }
 
     public bool IsDead()
     {
-        return _health <= 0;
+        return _stat.IsDead;
     }
 
     private void Die()

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets._HomeWorcksAssets._11_Platformer.Scripts;
 using UnityEngine;
 
 public class Aid : MonoBehaviour
@@ -8,7 +7,7 @@ public class Aid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent(out PlayerPlatformer player))
+        if (collision.transform.TryGetComponent(out Stat player))
         {
             player.TakeHeal(_heal);
             Destroy(gameObject);
