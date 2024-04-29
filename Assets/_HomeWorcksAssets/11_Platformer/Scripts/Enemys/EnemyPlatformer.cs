@@ -6,9 +6,9 @@ public class EnemyPlatformer : MonoBehaviour
 {
     [SerializeField] private PlayerPlatformer _playerTarget;
 
-    private Stat _stat;
-
     public PlayerPlatformer PlayerTarget => _playerTarget;
+
+    private Stat _stat;
 
     private void Awake()
     {
