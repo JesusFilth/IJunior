@@ -12,7 +12,6 @@ public class CounterView : MonoBehaviour
         _counter.ValueChanged += ChangeValue;
     }
 
-
     private void OnDisable()
     {
         _counter.ValueChanged -= ChangeValue;

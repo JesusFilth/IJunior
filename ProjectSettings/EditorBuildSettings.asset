@@ -62,4 +62,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_counter.unity
     guid: 06c966397d548774c8a7da2c1f289d30
+  - enabled: 1
+    path: Assets/Scenes/homework_CubeExplosions.unity
+    guid: 95723da8709e9014c882dc802ea30ed0
   m_configObjects: {}

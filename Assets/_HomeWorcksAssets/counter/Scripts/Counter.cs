@@ -43,8 +43,11 @@ public class Counter : MonoBehaviour
             }
             else
             {
-                StopCoroutine(_processing);
-                _processing = null;
+                if (_processing != null)
+                {
+                    StopCoroutine(_processing);
+                    _processing = null;
+                }
             }
         }
     }

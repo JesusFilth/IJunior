@@ -6,8 +6,6 @@ using UnityEngine;
 public class VampireSpell : MonoBehaviour
 {
     [SerializeField] private float _radius = 10f;
-    [SerializeField] private int _countRays = 36;
-    [SerializeField] private float _rayOffsetY = 0.5f;
     [SerializeField] private LayerMask _layerMask;
 
     [SerializeField] private int _secondDuration = 6;
@@ -63,30 +61,21 @@ public class VampireSpell : MonoBehaviour
 
     private void FindEnemys()
     {
-        for (int i = 0; i < _countRays; i++)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _layerMask);
+
+        if(colliders!= null && colliders.Length > 0)
         {
-            float angle = i * (360f / _countRays);
+            _enemys = new Health[colliders.Length];
 
-            Vector2 rayDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
-            Vector2 rayPosition = new Vector2(transform.position.x, transform.position.y + _rayOffsetY);
-
-            hits = Physics2D.RaycastAll(rayPosition, rayDirection, _radius, _layerMask);
-            Debug.DrawRay(rayPosition, rayDirection * _radius, Color.green);
-
-            if (hits != null && hits.Length > 0)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                _enemys = new Health[hits.Length];
-
-                for (int j = 0; j < hits.Length; j++)
-                {
-                    if (hits[j].collider.TryGetComponent(out Health enemy))
-                        _enemys[j] = enemy;
-                }
+                if (colliders[i].TryGetComponent(out Health enemy))
+                    _enemys[i] = enemy;
             }
-            else
-            {
-                _enemys = new Health[0];
-            }
+        }
+        else
+        {
+            _enemys = new Health[0];
         }
     }
 
@@ -139,5 +128,11 @@ public class VampireSpell : MonoBehaviour
         }
 
         _processing = null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }
