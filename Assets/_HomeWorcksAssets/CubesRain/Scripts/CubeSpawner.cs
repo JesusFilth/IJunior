@@ -46,15 +46,26 @@ public class CubeSpawner : MonoBehaviour
         cube.transform.position = GetStartRandomPosition();
         cube.Init();
         cube.gameObject.SetActive(true);
+
+        cube.Hided += ActionOnRelease;
+    }
+
+    private void ActionOnRelease(Cube cube) 
+    {
+        cube.Hided -= ActionOnRelease;
+
+        _pool.Release(cube);
     }
 
     private Vector3 GetStartRandomPosition()
     {
+        const float HalfSize = 2f;
+
         Vector3 platformCenter = transform.position;
         Vector3 platformSize = transform.localScale;
 
-        float randomX = Random.Range(platformCenter.x - platformSize.x / 2, platformCenter.x + platformSize.x / 2);
-        float randomZ = Random.Range(platformCenter.z - platformSize.z / 2, platformCenter.z + platformSize.z / 2);
+        float randomX = Random.Range(platformCenter.x - platformSize.x / HalfSize, platformCenter.x + platformSize.x / HalfSize);
+        float randomZ = Random.Range(platformCenter.z - platformSize.z / HalfSize, platformCenter.z + platformSize.z / HalfSize);
 
         float height = platformCenter.y + _startHeight;
 

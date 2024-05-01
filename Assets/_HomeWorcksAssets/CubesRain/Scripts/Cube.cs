@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
@@ -9,23 +11,44 @@ public class Cube : MonoBehaviour
     private const byte MinColorRange = 0;
     private const byte MaxColorRange = 255;
 
+    public event Action<Cube> Hided;
+
     private Color32 _defaultColor = new Color32(255, 255, 255, 255);
     private Renderer _renderer;
-
     private bool _isColorChanged;
+
+    private IEnumerator _hiding;
+    private WaitForSeconds _waitForSeconds;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        Destroy(gameObject, GetRandomLifetime());
+    }
+
+    private void OnEnable()
+    {
+        _waitForSeconds = new WaitForSeconds(GetRandomLifetime());
+
+        if (_hiding == null)
+        {
+            _hiding = Hiding();
+            StartCoroutine(_hiding);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_hiding != null)
+        {
+            StopCoroutine(_hiding);
+            _hiding = null;
+        }
     }
 
     public void Init()
     {
         _isColorChanged = false;
-        Destroy(gameObject, GetRandomLifetime());
-
-        //SetDefaultColor();
+        SetDefaultColor();
     }
 
     public void GenerateRandomColor()
@@ -33,9 +56,9 @@ public class Cube : MonoBehaviour
         if (_isColorChanged)
             return;
 
-        byte red = (byte)Random.Range(MinColorRange, MaxColorRange);
-        byte green = (byte)Random.Range(MinColorRange, MaxColorRange);
-        byte blue = (byte)Random.Range(MinColorRange, MaxColorRange);
+        byte red = (byte)UnityEngine.Random.Range(MinColorRange, MaxColorRange);
+        byte green = (byte)UnityEngine.Random.Range(MinColorRange, MaxColorRange);
+        byte blue = (byte)UnityEngine.Random.Range(MinColorRange, MaxColorRange);
 
         Color32 color = new Color32(red, green, blue, MaxColorRange);
         _renderer.material.color = color;
@@ -50,6 +73,14 @@ public class Cube : MonoBehaviour
 
     private float GetRandomLifetime()
     {
-        return Random.Range(MinLafetime, MaxLifetime +1);
+        return UnityEngine.Random.Range(MinLafetime, MaxLifetime +1);
+    }
+
+    private IEnumerator Hiding()
+    {
+        yield return _waitForSeconds;
+        Hided?.Invoke(this);
+
+        _hiding = null;
     }
 }
