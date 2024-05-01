@@ -20,7 +20,7 @@ public class VampireSpell : MonoBehaviour
     private Health _holder;
 
     private Health[] _enemys = new Health[0];
-    private RaycastHit2D[] hits;
+    private Collider2D[] _colliders;
 
     private Health _currentEnemy;
     private IEnumerator _processing;
@@ -61,15 +61,15 @@ public class VampireSpell : MonoBehaviour
 
     private void FindEnemys()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _layerMask);
+        _colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _layerMask);
 
-        if(colliders!= null && colliders.Length > 0)
+        if(_colliders != null && _colliders.Length > 0)
         {
-            _enemys = new Health[colliders.Length];
+            _enemys = new Health[_colliders.Length];
 
-            for (int i = 0; i < colliders.Length; i++)
+            for (int i = 0; i < _colliders.Length; i++)
             {
-                if (colliders[i].TryGetComponent(out Health enemy))
+                if (_colliders[i].TryGetComponent(out Health enemy))
                     _enemys[i] = enemy;
             }
         }
