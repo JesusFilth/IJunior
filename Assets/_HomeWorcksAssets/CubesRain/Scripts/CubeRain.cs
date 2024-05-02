@@ -24,7 +24,7 @@ public class CubeRain : MonoBehaviour
 
     private void OnEnable()
     {
-        _waitForSeconds = new WaitForSeconds(GetRandomLifetime());
+        _waitForSeconds = new WaitForSeconds(GenerateRandomLifetime());
 
         if (_hiding == null)
         {
@@ -45,7 +45,12 @@ public class CubeRain : MonoBehaviour
     public void Init()
     {
         _isColorChanged = false;
-        SetDefaultColor();
+        ChangeToDefaultColor();
+    }
+
+    private void ChangeToDefaultColor()
+    {
+        _renderer.material.color = _defaultColor;
     }
 
     public void GenerateRandomColor()
@@ -66,12 +71,7 @@ public class CubeRain : MonoBehaviour
         _isColorChanged = true;
     }
 
-    private void SetDefaultColor()
-    {
-        _renderer.material.color = _defaultColor;
-    }
-
-    private float GetRandomLifetime()
+    private float GenerateRandomLifetime()
     {
         return UnityEngine.Random.Range(MinLafetime, MaxLifetime +1);
     }
