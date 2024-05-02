@@ -367,6 +367,8 @@ GameObject:
   - component: {fileID: 1789617608}
   - component: {fileID: 1789617607}
   - component: {fileID: 1789617612}
+  - component: {fileID: 1789617614}
+  - component: {fileID: 1789617613}
   m_Layer: 0
   m_Name: CubeSpawner
   m_TagString: Untagged
@@ -386,11 +388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5acb2b1a4e825a41ab4245a3a4bb36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2025788322488327757, guid: 4da66474f27966a438e14cb0b995b0ff, type: 3}
+  _prefab: {fileID: 3762997847073978184, guid: 4da66474f27966a438e14cb0b995b0ff, type: 3}
   _repeatRate: 1
   _poolCapasity: 5
   _poolMaxSize: 5
-  _startHeight: 5
+  _platform: {fileID: 1789617613}
 --- !u!65 &1789617608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -498,6 +500,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1789617613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789617606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5cbc40bc1aa6f4e94a582b81011073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _height: 5
+--- !u!114 &1789617614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789617606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ed8abe50116bf4084afdb2f4fb0a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

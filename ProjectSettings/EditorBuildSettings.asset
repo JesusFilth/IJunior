@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/homework_CubesRain.unity
     guid: 837fd4536dae67248aed4c01aef518ab
+  - enabled: 1
+    path: Assets/Scenes/homework_AudioMixer.unity
+    guid: d7e06d84cb6edea40b814b8b23879e68
   m_configObjects: {}
