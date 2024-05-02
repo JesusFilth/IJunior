@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private Cube _prefab;
+    [SerializeField] private CubeRain _prefab;
 
     [SerializeField] private float _repeatRate = 1f;
     [SerializeField] private int _poolCapasity = 5;
@@ -11,11 +11,11 @@ public class CubeSpawner : MonoBehaviour
 
     [SerializeField] private float _startHeight = 5;
 
-    private ObjectPool<Cube> _pool;
+    private ObjectPool<CubeRain> _pool;
 
     private void Awake()
     {
-        _pool = new ObjectPool<Cube>(
+        _pool = new ObjectPool<CubeRain>(
             createFunc: () => Instantiate(_prefab),
             actionOnGet: (cube)=> ActionOnGet(cube),
             actionOnRelease: (cube) => cube.gameObject.SetActive(false),
@@ -32,7 +32,7 @@ public class CubeSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Cube cube))
+        if(other.TryGetComponent(out CubeRain cube))
             cube.GenerateRandomColor();
     }
 
@@ -41,7 +41,7 @@ public class CubeSpawner : MonoBehaviour
         _pool.Get();
     }
 
-    private void ActionOnGet(Cube cube)
+    private void ActionOnGet(CubeRain cube)
     {
         cube.transform.position = GetStartRandomPosition();
         cube.Init();
@@ -50,7 +50,7 @@ public class CubeSpawner : MonoBehaviour
         cube.Hided += ActionOnRelease;
     }
 
-    private void ActionOnRelease(Cube cube) 
+    private void ActionOnRelease(CubeRain cube) 
     {
         cube.Hided -= ActionOnRelease;
 

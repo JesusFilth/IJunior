@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class Cube : MonoBehaviour
+public class CubeRain : MonoBehaviour
 {
     private const float MinLafetime = 2;
     private const float MaxLifetime = 5;
@@ -11,7 +11,7 @@ public class Cube : MonoBehaviour
     private const byte MinColorRange = 0;
     private const byte MaxColorRange = 255;
 
-    public event Action<Cube> Hided;
+    public event Action<CubeRain> Hided;
 
     private Color32 _defaultColor = new Color32(255, 255, 255, 255);
     private Renderer _renderer;
