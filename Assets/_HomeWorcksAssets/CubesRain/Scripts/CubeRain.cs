@@ -8,9 +8,6 @@ public class CubeRain : MonoBehaviour
     private const float MinLafetime = 2;
     private const float MaxLifetime = 5;
 
-    private const byte MinColorRange = 0;
-    private const byte MaxColorRange = 255;
-
     public event Action<CubeRain> Hided;
 
     private Color32 _defaultColor = new Color32(255, 255, 255, 255);
@@ -55,6 +52,9 @@ public class CubeRain : MonoBehaviour
     {
         if (_isColorChanged)
             return;
+
+        const byte MinColorRange = 0;
+        const byte MaxColorRange = 255;
 
         byte red = (byte)UnityEngine.Random.Range(MinColorRange, MaxColorRange);
         byte green = (byte)UnityEngine.Random.Range(MinColorRange, MaxColorRange);

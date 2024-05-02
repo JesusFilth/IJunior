@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using System;
+using Assets._HomeWorcksAssets.CubesRain.Scripts;
 
-public class CubeSpawner : MonoBehaviour
+public class CubeRainSpawner : MonoBehaviour
 {
     [SerializeField] private CubeRain _prefab;
 
@@ -9,7 +11,7 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private int _poolCapasity = 5;
     [SerializeField] private int _poolMaxSize = 5;
 
-    [SerializeField] private float _startHeight = 5;
+    [SerializeField] private RainPlatform _platform;
 
     private ObjectPool<CubeRain> _pool;
 
@@ -30,10 +32,10 @@ public class CubeSpawner : MonoBehaviour
         InvokeRepeating(nameof(Create), 0f, _repeatRate);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnValidate()
     {
-        if(other.TryGetComponent(out CubeRain cube))
-            cube.GenerateRandomColor();
+        if (_platform == null)
+            throw new ArgumentNullException(nameof(_platform));
     }
 
     private void Create()
@@ -43,7 +45,7 @@ public class CubeSpawner : MonoBehaviour
 
     private void ActionOnGet(CubeRain cube)
     {
-        cube.transform.position = GetStartRandomPosition();
+        cube.transform.position = _platform.GetRandomPosition();
         cube.Init();
         cube.gameObject.SetActive(true);
 
@@ -55,20 +57,5 @@ public class CubeSpawner : MonoBehaviour
         cube.Hided -= ActionOnRelease;
 
         _pool.Release(cube);
-    }
-
-    private Vector3 GetStartRandomPosition()
-    {
-        const float HalfSize = 2f;
-
-        Vector3 platformCenter = transform.position;
-        Vector3 platformSize = transform.localScale;
-
-        float randomX = Random.Range(platformCenter.x - platformSize.x / HalfSize, platformCenter.x + platformSize.x / HalfSize);
-        float randomZ = Random.Range(platformCenter.z - platformSize.z / HalfSize, platformCenter.z + platformSize.z / HalfSize);
-
-        float height = platformCenter.y + _startHeight;
-
-        return new Vector3(randomX, height, randomZ);
     }
 }
