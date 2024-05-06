@@ -90,7 +90,7 @@ public class Catapult : MonoBehaviour
     {
         _currentTime = 0;
 
-        while (_currentTime <= _timeStartPosition && enabled)
+        while (_currentTime <= _timeStartPosition)
         {
             _currentTime += Time.deltaTime;
             float step = _currentTime / _timeStartPosition;
