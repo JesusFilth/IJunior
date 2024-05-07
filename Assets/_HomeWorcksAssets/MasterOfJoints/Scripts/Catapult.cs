@@ -17,9 +17,12 @@ public class Catapult : MonoBehaviour
 
     [SerializeField] private float _timeStartPosition = 2f;
 
+    [SerializeField] private KeyCode _reset = KeyCode.Space;
+    [SerializeField] private KeyCode _shoot = KeyCode.E;
+
     private float _currentTime;
 
-    private IEnumerator _starting;
+    private Coroutine _starting;
     private bool _canShoot;
 
     private void OnValidate()
@@ -39,11 +42,11 @@ public class Catapult : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(_reset))
         {
             ResetSpoon();
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKey(_shoot))
         {
             Shoot();
         }    
@@ -63,10 +66,7 @@ public class Catapult : MonoBehaviour
         _upSpring.spring = 0;
 
         if(_starting == null)
-        {
-            _starting = Starting();
-            StartCoroutine(_starting);
-        }
+            _starting = StartCoroutine(Starting());
     }
 
     private void Shoot()

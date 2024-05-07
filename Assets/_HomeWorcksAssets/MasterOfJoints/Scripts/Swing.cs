@@ -4,6 +4,8 @@ using UnityEngine;
 public class Swing : MonoBehaviour
 {
     [SerializeField] private float _force = 10f;
+    [SerializeField] private KeyCode _left = KeyCode.Mouse0;
+    [SerializeField] private KeyCode _right = KeyCode.Mouse1;
 
     private Rigidbody _rigidbody;
 
@@ -14,13 +16,18 @@ public class Swing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(_left))
         {
-            _rigidbody.AddForce(Vector3.left * _force, ForceMode.Impulse);
+            AddForce(Vector3.left);
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetKey(_right))
         {
-            _rigidbody.AddForce(Vector3.right * _force, ForceMode.Impulse);
+            AddForce(Vector3.right);
         }
+    }
+
+    private void AddForce(Vector3 dictionary)
+    {
+        _rigidbody.AddForce(dictionary * _force, ForceMode.Impulse);
     }
 }
