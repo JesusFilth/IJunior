@@ -26,8 +26,8 @@ public class Swing : MonoBehaviour
         }
     }
 
-    private void AddForce(Vector3 dictionary)
+    private void AddForce(Vector3 direction)
     {
-        _rigidbody.AddForce(dictionary * _force, ForceMode.Impulse);
+        _rigidbody.AddForce(direction * _force, ForceMode.Impulse);
     }
 }
