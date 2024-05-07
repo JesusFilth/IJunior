@@ -55,10 +55,7 @@ public class Catapult : MonoBehaviour
     private void OnDisable()
     {
         if(_starting != null)
-        {
-            StopCoroutine(_starting);
-            _starting = null;
-        }
+            StopCoroutine(_starting);    
     }
 
     private void ResetSpoon()
